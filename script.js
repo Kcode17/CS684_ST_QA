@@ -11,3 +11,9 @@ function getData(){
     teamName();
 }
 
+function teamName(){
+    var h3 = document.createElement('h3');
+    var name  = document.createTextNode('Transformers');
+    h3.appendChild(name);
+    document.getElementById('team').appendChild(h3);
+}
