@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/userDb', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/login', {useNewUrlParser: true});
 var conn = mongoose.connection;
 conn.on('connected', function() {
     console.log('database is connected successfully');

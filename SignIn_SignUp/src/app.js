@@ -38,11 +38,12 @@ app.get("/register", (req,res) => {
         console.log('step 1');
 
         if(password === rpassword){
+            console.log('step 2');
             const registerUser = new Register({
                 email: req.body.email,
                 password: req.body.password
             })
-            console.log('step 2');
+            
             const registered = await registerUser.save();
             res.status(201).render(index);
         }
@@ -55,6 +56,7 @@ app.get("/register", (req,res) => {
     } 
     
     catch (error){
+        console.log('step 4');
         res.status(400).send(error);
     }
  })
