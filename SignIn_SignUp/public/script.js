@@ -16,17 +16,8 @@
         form.classList.add('was-validated')
       }, false)
     })
-})()
 
-function passwdCheck(text){
-  var regexcheck = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$/;
-  if(text.value.match(regexcheck))
-  {
-    let textElement = document.getElementById('pwMessage');
-    textElement.innerHTML += 'Password accepted';
-  }
-  else{
-    let textElement = document.getElementById('pwMessage');
-    textElement.innerHTML += 'Password does not meet the minimum criteria.!';
-  }
-}
+
+
+
+  })()

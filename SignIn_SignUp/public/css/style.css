@@ -15,10 +15,6 @@
     transform: translate(-50%, -50%);
 }
 
-body{ 
-    background-color: #f7efff56 !important; 
-}
-
 .image{
     width: 350px;
     height: 450px;
@@ -46,7 +42,16 @@ body{
 .content{
     padding: 25px;
     display: flex;
-    max-width: 100%;
+    max-width: 350px;
+    position: relative;
+    justify-content: left;  
+    line-height: 27px;
+}
+
+.content_register{
+    padding: 25px;
+    display: flex;
+    max-width: 350px;
     position: relative;
     justify-content: left;  
     line-height: 30px;
@@ -65,7 +70,21 @@ body{
 
 }
 
-.Sign-Up-Text a{
+.Forgot-Password{
+    text-align: center;
+    margin-top: 10px;
+}
+
+hr.solid {
+    border-top: 1px solid rgb(161, 161, 161);
+  }
+
+  hr.solid1 {
+      margin-top: 25px;
+    border-top: 1px solid rgb(161, 161, 161);
+  }
+
+.Sign-Up-Text, .Forgot-Password a{
     color: #5603AD;
 }
 
