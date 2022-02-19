@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container-1">
+      <div class="image">
+          <img src="images/loginImage.jpg"> 
+      </div>
+      <div class="content">
+        <form action="/login" method="POST">
+          <h3>SIGN IN</h3>
+          <% if (messages) { %> 
+            <p><%= messages.error %></p>
+          <% } %>
+          <div class="form-group">
+            <input
+              class="form-control"
+              type="email"
+              name="email"
+              placeholder="enter email address"
+            />
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="enter password" />
+          </div>
+          <button>SIGN IN</button>
+
+          <div class="Sign-Up-Text">
+            Don't have an account?
+            <a href="/register" class="text-decoration-none">Sign Up</a>
+          </div> 
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
