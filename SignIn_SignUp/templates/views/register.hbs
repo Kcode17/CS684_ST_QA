@@ -20,20 +20,26 @@
                 <form action="/register" method="POST" name="signIn" class="needs-validation" novalidate>
                     <h3>Sign Up</h3>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                        <label for="exampleInputEmail1"></label>
+                        <input type="email" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username" required>
+                        <div class="invalid-feedback">Please enter a valid Username.!</div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2"></label>
+                        <input type="email" class="form-control" name="email" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Email Address" required>
                         <div class="invalid-feedback">Please enter a valid Email Address.!</div>
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
+                        <label for="exampleInputPassword1"></label>
                         <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword2">Re-Enter Password</label>
-                        <input type="password" class="form-control" name="repeatpassword" id="exampleInputPasswordRepeat" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" required>
+                        <label for="exampleInputPassword2"></label>
+                        <input type="password" class="form-control" name="repeatpassword" id="exampleInputPasswordRepeat" placeholder="Repeat Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" required>
                         <div class="invalid-feedback">Password should be atleast 8 characters with lowercase, uppercase and symbols.</div>
                     </div>
                     <div>
