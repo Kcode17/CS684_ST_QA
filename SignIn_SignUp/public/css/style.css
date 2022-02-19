@@ -31,6 +31,18 @@ body{
     position: relative;
 }
 
+.image1{
+    width: 350px;
+    height: 550px;
+    border-radius: 15px 0px 0px 15px;
+    overflow: hidden;
+    display:flex;
+    justify-content: left;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+}
+
 .content{
     padding: 25px;
     display: flex;
