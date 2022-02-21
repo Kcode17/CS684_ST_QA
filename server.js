@@ -123,7 +123,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
           } else {
             console.log(password)
             console.log(confirmpassword)
-            if((checkPassword(password) == false) || (checkPassword(confirmpassword) == false))
+            if((checkPassword(password.trim()) == false) || (checkPassword(confirmpassword.trim()) == false))
             {
               req.flash("error", "Password should have no spaces, must be 8 char long, atleast 1 Uppercase letter, 1 Lowercase letter and 1 special char");
               res.redirect("/register");
@@ -134,10 +134,10 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
               res.redirect("/register");
             } else {
                 try {
-                  const hashedPassword = await bcrypt.hash(req.body.password, 10);
-                  const hashedConfirmPassword = await bcrypt.hash(req.body.confirmpassword, 10);
+                  const hashedPassword = await bcrypt.hash(req.body.password.trim(), 10);
+                  const hashedConfirmPassword = await bcrypt.hash(req.body.confirmpassword.trim(), 10);
                   const user = new User({
-                    username: req.body.username,
+                    username: req.body.username.trim(),
                     email: req.body.email,
                     password: hashedPassword,
                     confirmpassword: hashedConfirmPassword,
