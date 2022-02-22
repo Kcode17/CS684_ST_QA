@@ -1,6 +1,6 @@
 | | | | | | |
 |-|-|-|-|-|-|
-|Test ID|Task|Prerequisite|Description/ Steps|Expected Output|Result - Pass/Fail|
+|Test ID|Task|Prerequisite|Description/ Steps|Expected Output|Result- Pass/Fail|
 |SI_1|Check if the Sign in page load|User should have the link to the application and server running|1. Click on the link http://localhost:3000/login|1. The page should load  2. Fields below should be listed: a. Email b. Password|Pass|
 |SI_2|Test sign in functionality when all fields are correctly filled|User should have the link to the application and server running User should have the page loaded for sign in|1. Click on the link http://localhost:3000/login 2.Enter registered email  3. Enter registered password with the email |1. User should successfully get logged into the application upon authentication 2. Redirect the user to the landing page of app|Pass|
 |SI_3|Test validation message appearance when email is blank|User should have the link to the application and server running User should have the page loaded for sign in|1. Click on the link http://localhost:3000/login 2. Leave the email field blank 3. Enter registered password with the email |The user should get an error message that email needs to be entered in order to successfully login |Pass|
