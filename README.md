@@ -3,12 +3,13 @@
 ## Milestone	Date 
 ### Project Introduction / Sprint 1 planning	Feb 1 2022
 ### 1. Sprint 1 due / Sprint 2 planning- Feb 22 2022
+### [Test Report Demo](https://github.com/Kcode17/CS684_ST_QA/blob/main/TestingDocs/Test%20Report%20Demo.mp4)
 ### [Test Cases for Sign up Page](https://github.com/Kcode17/CS684_ST_QA/blob/main/TestingDocs/Test%20Cases%20Report.SignUpPage.md)
 ### [Test Cases for Sign In Page](https://github.com/Kcode17/CS684_ST_QA/blob/main/TestingDocs/Test%20Cases%20Report.SignInPage.md)
 ### [Test Cases for Landing Page](https://github.com/Kcode17/CS684_ST_QA/blob/main/TestingDocs/Test%20Cases%20Report.LandingPage.md)
 ### [Test Cases for API](https://github.com/Kcode17/CS684_ST_QA/blob/main/TestingDocs/Test%20Cases%20Report.API.md)
 ### [Version History](https://github.com/Kcode17/CS684_ST_QA/blob/main/TestingDocs/Test%20Cases%20Report.Version%20History.md)
-### [Test Report Demo](https://github.com/Kcode17/CS684_ST_QA/blob/main/TestingDocs/Test%20Report%20Demo.mp4)
+
 ### 2. Sprint 2 due / Sprint 3 planning- Mar 22 2022
 ### 3. Sprint 3 due / Sprint 4 planning- Apr 12 2022
 ### 4. Sprint 4 (final project)- May 10 2022
