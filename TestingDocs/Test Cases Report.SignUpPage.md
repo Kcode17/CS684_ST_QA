@@ -1,6 +1,6 @@
 | | | | | | |
 |-|-|-|-|-|-|
-|Test ID |Task|Prerequisite|Description/ Steps|Expected Output|Result - Pass/ Fail|
+|Test ID |Task|Prerequisite|Description/ Steps|Expected Output|Result- Pass/Fail|
 |SU_1|Check if the Sign up page loads|User should have the link to the application and server running|1. Click on the link http://localhost:3000/register|1. The page should load  2. Fields below should be listed: a. User name b. Email c. Password d. Confirm Password|Pass|
 |SU_2|Test sign up functionality when all fields are empty|User should have the link to the application and server running|1. Click on the link http://localhost:3000/register 2. Hit Sign up leaving all the fields blank: a. User name b. Email c. Password d. Confirm Password|1. The page should load  2. User should not be able to register and would get an error message that they need to fill all the fields on the sign up page|Pass|
 |SU_3|Test sign up functionality when all fields are correctly filled|User should have the link to the application and server running User should have the page loaded for registration/ signup|1. Click on the link http://localhost:3000/register 2. Enter username with minimum 8 characters long and no symbols or spaces 3. Enter valid email address 4. Enter password with atleast 1 Upper case, 1 Lower case, 1 special character, no spaces in middle and minimum 8 characters long 5. Enter same value as confirm password   |1. User should successfully get registered in the database. 2. Redirect the user to the login screen|Pass|
