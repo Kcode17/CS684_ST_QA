@@ -1,6 +1,6 @@
 | | | | | | |
 |-|-|-|-|-|-|
-|Test ID|Task|Prerequisite|Description/ Steps|Expected Output|Result - Pass/Fail|
+|Test ID|Task|Prerequisite|Description/ Steps|Expected Output|Result- Pass/Fail|
 |API_1|Test the Signup API|1. User's email is not registered in the DB|1. Start postman to test API 2. Set up headers: Content-Type: application/json Accept: application/json 3. Body for raw: {     "username":"jackjones",     "email":"jack@gmail.com",     "password":"jackJon3$",     "confirmpassword":"jackJon3$" } 4. Method as POST: 5. URL http://localhost:3000/register|1. A new record should be created in the Database with the details passed in the body of postman 2. Response status: 200 Success|Pass|
 |API_2|Test the Signup API|1. User's email is not registered in the DB|1. Start postman to test API 2. Do not set up the headers 3. Body as blank 4. Method as GET URL http://localhost:3000/register|1. This call should result in 400 Bad request|Pass |
 |API_3|Test the Signup API|1. User's email is not registered in the DB|1. Start postman to test API 2. Set up headers: Content-Type: application/json Accept: application/json 3. Body for raw: {     "username":"jackjones",     "email":"jack@gmail.com",     "password":"jackJon3$",     "confirmpassword":"jackJon3$" } 4. Method as GET 5. URL: http://localhost:3000/register|1. Response status: 200 Success|Pass |
