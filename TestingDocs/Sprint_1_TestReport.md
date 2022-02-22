@@ -22,8 +22,8 @@
 |SI_4|Zahabiya F. Rangwala|Pass| |
 |SI_5|Zahabiya F. Rangwala|Pass| |
 |SI_6|Zahabiya F. Rangwala|Pass| |
-|L_1|Zahabiya F. Rangwala|Pass| |
-|L_2|Zahabiya F. Rangwala|Pass| |
+|LD_1|Zahabiya F. Rangwala|Pass| |
+|LD_2|Zahabiya F. Rangwala|Pass| |
 |API_1|Garima Negi|Pass| |
 |API_2|Garima Negi|Pass| |
 |API_3|Garima Negi|Pass| |
