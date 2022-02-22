@@ -1,0 +1,94 @@
+
+
+.container-1{
+  background-color: white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  width:700px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image{
+  width: 350px;
+  height: 450px;
+  border-radius: 15px 0px 0px 15px;
+  overflow: hidden;
+  display:flex;
+  justify-content: left;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+}
+
+.image1{
+  width: 350px;
+  height: 550px;
+  border-radius: 15px 0px 0px 15px;
+  overflow: hidden;
+  display:flex;
+  justify-content: left;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+}
+
+.content{
+  padding: 25px;
+  display: flex;
+  max-width: 350px;
+  position: relative;
+  justify-content: left;  
+  line-height: 25px;
+}
+
+.content_register{
+  padding: 25px;
+  display: flex;
+  max-width: 350px;
+  position: relative;
+  justify-content: left;  
+  line-height: 17px;
+}
+
+.btn-primary{
+  background-color: #5603AD !important;
+  border-color: #5603AD !important;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.Sign-Up-Text{
+  text-align: center;
+  margin-top: 25px;
+
+}
+
+.Forgot-Password{
+  text-align: center;
+  margin-top: 10px;
+}
+
+hr.solid {
+  border-top: 1px solid rgb(161, 161, 161);
+}
+
+hr.solid1 {
+    margin-top: 25px;
+  border-top: 1px solid rgb(161, 161, 161);
+}
+
+.Sign-Up-Text, .Forgot-Password a{
+  color: #5603AD;
+}
+
+.form-control:focus{
+  border:1px solid #5603AD !important;
+  box-shadow: 0 0 2px #5603AD !important;
+}
