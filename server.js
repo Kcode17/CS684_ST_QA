@@ -82,9 +82,9 @@ app.post(
 
 app.post("/register", checkNotAuthenticated, async (req, res) => {
   var username = req.body.username;
-  var username = username.trim();
-  var trimUsername = username.trim();
-  var usernamelength = trimUsername.length;
+  //var username = username.trim();
+  //var trimUsername = username.trim();
+  //var usernamelength = trimUsername.length;
   var email = req.body.email;
   var userAvailable = await User.findOne({ email: req.body.email });
   var password = req.body.password;
@@ -101,16 +101,16 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
       } 
       else { 
         console.log(username)   //replace
-      if(username.includes(" ") == true) { //replace
-       req.flash("error", "No spaces are allowed in the username");
-      res.redirect("/register");
-      } 
-        else{
-          if((usernamelength) <8) {
-            req.flash("error", "username needs to be min of 8 characters");
-            res.redirect("/register");
-          }
-          else{
+     // if(username.includes(" ") == true) { //replace
+      // req.flash("error", "No spaces are allowed in the username");
+     // res.redirect("/register");
+     // } 
+        //else{
+         // if((usernamelength) <8) {
+          //  req.flash("error", "username needs to be min of 8 characters");
+          //  res.redirect("/register");
+          //}
+        //  else{
             if(checkEmail(email) == false) {
               req.flash("error", "Email is not valid");
               res.redirect("/register");
@@ -150,9 +150,9 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
                     res.redirect("/register");
             }}
           }}
-       }
+      // }
     }}
-  }
+  //}
 } 
 });
 
