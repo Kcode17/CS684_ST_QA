@@ -23,6 +23,31 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim:true,
   },
+
+  sport : String,
+  business: String,
+  general: String,
+  entertainment: String,
+  health: String,
+  science: String,
+  technology: String
+  //sport:{
+    //type: Boolean,
+    //default: false
+  //},
+  //general:{
+   // type: Boolean,
+    //default: true
+  //},
+  //entertainment:{
+   // type: Boolean,
+    //default: false
+  //},
+  //business:{
+   // type: Boolean,
+   // default: false
+  //},
+
 });
 
 const User = mongoose.model("User", userSchema);

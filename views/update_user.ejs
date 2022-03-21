@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    
+    
+</head>
+<body>
+    
+
+    <!--<form method="POST" action="/settings/" >-->
+        <form method="PUT" id="update_user" action="/landing">
+        <div class="form-group">
+            <h3> <label for="name" class="text-light">CATEGORY SETTINGS</label> </h3>
+            <input type="hidden" name="id" value="<%= id %>">
+            
+            
+        </div>
+
+
+        <!--<div class="form-group">
+            <label for="general" class="text-light">General</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-2" name="general" value="yes" <%= general == 'yes' ? 'checked' : '' %>>
+                <label for="radio-2" class="radio-label">Yes</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-3" name="general" value="no"  <%= general == 'no' ? 'checked' : '' %> >
+                <label for="radio-3" class="radio-label">No</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="health" class="text-light">Health</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-2" name="health" value="yes" <%= health == 'yes' ? 'checked' : '' %>>
+                <label for="radio-2" class="radio-label">Yes</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-3" name="health" value="no"  <%= health == 'no' ? 'checked' : '' %> >
+                <label for="radio-3" class="radio-label">No</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="science" class="text-light">Science</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-2" name="science" value="yes" <%= science == 'yes' ? 'checked' : '' %>>
+                <label for="radio-2" class="radio-label">Yes</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-3" name="science" value="no"  <%= science == 'no' ? 'checked' : '' %> >
+                <label for="radio-3" class="radio-label">No</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="technology" class="text-light">Technology</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-2" name="technology" value="yes" <%= technology == 'yes' ? 'checked' : '' %>>
+                <label for="radio-2" class="radio-label">Yes</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-3" name="technology" value="no"  <%= technology == 'no' ? 'checked' : '' %> >
+                <label for="radio-3" class="radio-label">No</label>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="general" class="text-light">Business</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-2" name="business" value="yes" <%= business == 'yes' ? 'checked' : '' %>>
+                <label for="radio-2" class="radio-label">Yes</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-3" name="business" value="no"  <%= business == 'no' ? 'checked' : '' %> >
+                <label for="radio-3" class="radio-label">No</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="entertainment" class="text-light">Entertainment</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-2" name="entertainment" value="yes" <%= entertainment == 'yes' ? 'checked' : '' %>>
+                <label for="radio-2" class="radio-label">Yes</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-3" name="entertainment" value="no"  <%= entertainment == 'no' ? 'checked' : '' %> >
+                <label for="radio-3" class="radio-label">No</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="sport" class="text-light">Sport</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-2" name="sport" value="yes" <%= sport == 'yes' ? 'checked' : '' %>>
+                <label for="radio-2" class="radio-label">Yes</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-3" name="sport" value="no"  <%= sport == 'no' ? 'checked' : '' %> >
+                <label for="radio-3" class="radio-label">No</label>
+            </div>
+        </div>-->
+        
+        
+        <div class="form-group">
+            <label for="s1"><input type="checkbox" name="subject" value="General" id="s1">General</label>
+            <label for="s2"><input type="checkbox" name="subject" value="Health" id="s2">Health</label>
+            <label for="s3"><input type="checkbox" name="subject" value="Science" id="s3">Science</label>
+            <label for="s4"><input type="checkbox" name="subject" value="Technology" id="s4">Technology</label>
+            <label for="s5"><input type="checkbox" name="subject" value="Business" id="s5">Business</label>
+            <label for="s6"><input type="checkbox" name="subject" value="Entertainment" id="s6">Entertainment</label>
+            <label for="s7"><input type="checkbox" name="subject" value="Sport" id="s7">Sport</label>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn text-dark update">Save</button>
+        </div>
+
+        <div class="form-group">
+            <a href="http://localhost:3000/landing/">Cancel</a>
+        </div>
+        
+        
+
+       <!--<input class="form-check-input" name="general" value="general" type="checkbox" <%= general == 'true' ? 'checked' : '' %>>general
+        <br>
+        <input class="form-check-input" name="sport" value="sport" type="checkbox" <%= sport == 'true' ? 'checked' : '' %>>sport
+        <br>
+        <input class="form-check-input" name="business" value="business" type="checkbox" <%= business == 'true' ? 'checked' : '' %>>business
+        <br>
+        <input class="form-check-input" name="entertainment" value="entertainment" type="checkbox" <%= entertainment == 'true' ? 'checked' : '' %>>entertainment
+        <br>
+        <input type="submit" onclick="checkCheckbox() value="Save">-->
+    <!--</form>-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    -->
+
+   
+   <!--<script>
+
+       $("#update_user").submit(function(event){
+      event.preventDefault();
+  
+      var unindexed_array = $(this).serializeArray();
+      var data = {}
+  
+      $.map(unindexed_array, function(n, i){
+          data[n['name']] = n['value']
+      })
+  
+  
+      var request = {
+          "url" : `http://localhost:3000/api/users/${data.id}`,
+          "method" : "PUT",
+          "data" : data
+      }
+  
+      $.ajax(request).done(function(response){
+          alert("Data Updated Successfully!");
+      })
+  
+  })-->
+  
+
+
+    </script>
+
+    <script>
+        $("#update_user").submit(function(event){
+        event.preventDefault();
+
+        const bt = document.querySelector('#bt');
+        bt.addEventListener('click', (event) => {
+            let checkboxes = document.querySelectorAll('input[name="subject"]:checked');
+            let data = [];
+            checkboxes.forEach((checkbox) => {
+                data.push(checkbox.value);
+            });
+            alert(data);
+            console.log(data);
+        });  
+
+        var request = {
+          "url" : `http://localhost:3000/api/users/${data.id}`,
+          "method" : "PUT",
+          "data" : data
+        }
+
+        $.ajax(request).done(function(response){
+            alert("Data Updated Successfully!");
+        });
+    })
+
+
+    </script>
+
+  </body>
+</html>

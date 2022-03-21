@@ -6,15 +6,221 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Login and Register</title>
+    <style>
+      /* The container */
+      .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+      /* Hide the browser's default checkbox */
+      .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      
+      /* Create a custom checkbox */
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+      }
+      
+      /* On mouse-over, add a grey background color */
+      .container:hover input ~ .checkmark {
+        background-color: #ccc;
+      }
+      
+      /* When the checkbox is checked, add a blue background */
+      .container input:checked ~ .checkmark {
+        background-color: #2196F3;
+      }
+      
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      
+      /* Show the checkmark when checked */
+      .container input:checked ~ .checkmark:after {
+        display: block;
+      }
+      
+      /* Style the checkmark/indicator */
+      .container .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
+      .body{
+        font-family: montserrat;
+        background: #e7e7e7;
+        height: 100vh;
+      }
+      
+      h5{
+        text-align: center;
+        color: #82807f;
+        margin: 80px auto;
+        font-size: 20px;
+        width: 50%;
+        line-height: 1.7;
+      }
+      .box{
+        text-align: center;
+      }
+      .button{
+        font-size: 1em;
+        padding: 15px 35px;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+        background: #403e3d;
+        border-radius: 50px;
+      }
+      .overlay{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+      }
+      .overlay:target{
+        visibility: visible;
+        opacity: 1;
+      }
+      .wrapper{
+        margin: 70px auto;
+        padding: 20px;
+        background: #e7e7e7;
+        border-radius: 5px;
+        width: 30%;
+        position: relative;
+        transition: all 5s ease-in-out;
+      }
+      .wrapper h2{
+        margin-top: 0;
+        color: #333;
+      }
+      .wrapper .close{
+        position: absolute;
+        top: 20px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+      }
+      .wrapper .content{
+        max-height: 30%;
+        overflow: auto;
+      }
+
+      
+      form label{
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 3px;
+      }
+      
+      </style>
+
   </head>
+  <%- include("partials/header.ejs") %> 
   <body> 
+
+      
+  <%- include("partials/landingnavbar.ejs") %> 
+  <%- include("partials/landingrefresh.ejs") %> 
+
     <h3 align="right">Hello <%= username %></h3>
     <form action="/logout?_method=DELETE" method="POST" >
     <p align="right">  
       <button type="submit">LOGOUT</button>
     </p>
-    <h2 align="center">Work in progress..!!!</h2>
+    <!--<h2 align="center">Work in progress..!!!</h2>-->
     </form>
+  
+    <!-- <div class="box">
+     <form action="/update_user">
+          <button style="margin-left : 95%;" style="height:50px;width:50px" class="btn btn-primary" type="submit">Settings</button>
+        </form></div> -->
+
+        <div class="Sign-Up-Text" id="right">
+          <h3><a href="/update_user?id=<%= id %>"  class="text-decoration-none" style="float: right;"> Settings</a></h3>
+        </div>
+        <!--<div class="overlay" id="divOne">
+        <a href="#divOne" class="button">Settings </a>
+      </div>
+  </div>   -->
+
+  <div class="news-container ">
+        
+    <div class="news">
+
+
+            <% articles.forEach(function(article,index){ %>
+
+                <% if ((typeof article.url=='object') || (typeof article.title=='object') || (typeof article.urlToImage=='object') || (typeof article.content=='object')){ %>
+                    <% } else{ %>
+                        <a href="<%- article.url %>" target="_blank" class="news-box Hover-effect">
+
+                            <img src="<%- article.urlToImage %>" alt="Image">
+                            <h3>
+                                <%- article.title %>
+                            </h3>
+
+
+                            <p>
+                                <%- article.content.replace(/<[^>]+>/g, '') %>
+                            </p>
+                            <br>
+                            <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:#5603AD;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
+
+
+                        </a>
+                        <% } %>
+                        <% }) %>
+
+                      </div>
+                    </div>
+                
+<script src="moment.js"></script>
+<script src="moment-timezone-with-data.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  
   </body>
 </html>
 	
