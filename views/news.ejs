@@ -1,5 +1,11 @@
+<%- include("partials/header.ejs") %> 
+
 <body>
-    <div class="xs-container">
+
+<%- include("partials/navigationBarNews.ejs") %> 
+<%- include("partials/refresh.ejs") %> 
+
+    <div class="xs-container ">
         
         <div class="news">
 
@@ -19,7 +25,7 @@
                                 <%- article.content.replace(/<[^>]+>/g, '') %>
                             </p>
                             <br>
-                            <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:#5603AD;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
+                            <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: sans-serif;">Updated: <span style="color:#5603AD;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
 
 
                         </a>
