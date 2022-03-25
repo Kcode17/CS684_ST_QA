@@ -1,5 +1,4 @@
-
-# CS 684 Sprint 2 Test Plan - Team Transformers
+# CS 684 Test Plan - Team Transformers
 
 - [INTRODUCTION](#introduction)
   - [IN SCOPE](#in-scope)
@@ -149,3 +148,4 @@ Each functionality will undergo unit testing by building unit test cases before 
 | 6   |Functional testing and Bug fix - Iteration 2|  Day 24 of Sprint  | Day 26 of Sprint | Cross team member involvement      |  
 | 7   |Integration testing and Bug fix|  Day 27 of Sprint  | Day 28 of Sprint | Cross team member involvement      |  
 | 8   |Code Freeze|    | Day 29 of Sprint | Entire Team      |  
+
