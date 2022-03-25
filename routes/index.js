@@ -12,7 +12,7 @@ const {ensureAuthenticated} = require('../config/auth')
 
 router.get('/',async(req,res)=>{
     var api = 'http://newsapi.org/v2/top-headlines?'
-    var country = 'country=in'
+    var country = 'country=us'
     var category = '&General'
     var apiKey = '&apiKey=36f3e29b704f41339af8439dc1228334' 
     try {
