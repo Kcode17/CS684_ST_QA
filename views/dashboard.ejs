@@ -1,15 +1,50 @@
-<h2>My Dashboard</h2>
-<p style = "float:right"> Welcome <%= user.name %></p>
-<a href="/users/logout" style = "float:right" >Logout</a>
+<div class="topnav">
+  <div class="container-nav" >
+    <a href="/dashboard">Transformers News</a>
+    <div class="topnav-right">
+      <div class="refresh">
+        <form method="GET" id="refresh" action="/dashboard">
+          <Button type="submit" class="btn btn-primary" >Refresh</Button>
+        </form> 
+      </div>
+      <a href="/users/update_user?id=<%= id %>">Settings</a>
+      <a href="/users/logout">Log out</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    
+  </div>
+</div>
 
-<form method="GET" id="refresh" action="/dashboard">
-  <!-- <a href="/"> Refresh </a> -->
+<div class="welcome-text">
+  <h2 style = "float:right"> Welcome <%= user.name %></h2>
+</div>
+<div class="welcome-text">
+  <h2>My Dashboard</h2>
+</div>
+
+<div class="tab">
+  <button class="tablinks" onclick="">Home</button>
+  <button class="tablinks" onclick="">General</button>
+  <button class="tablinks" onclick="">Business</button>
+  <button class="tablinks" onclick="">Entertainment</button>
+  <button class="tablinks" onclick="">Health</button>
+  <button class="tablinks" onclick="">Science</button>
+  <button class="tablinks" onclick="">Sports</button>
+  <button class="tablinks" onclick="">Technology</button>
+</div>
+
+
+
+  <!--<a href="/users/logout" style = "float:right" >Logout</a>-->
+
+
+<!--<form method="GET" id="refresh" action="/dashboard">
+  <a href="/"> Refresh </a>
   <button type="submit" class="btn btn-primary btn-block" style="height:40px; width:100px;">Refresh</button>
-</form>
+</form>-->
 
-<div class="Sign-Up-Text" id="right">
+<!--<div class="Sign-Up-Text" id="right">
     <h3><a href="/users/update_user?id=<%= id %>"  class="text-decoration-none" style="float: right;"> Settings</a></h3>
-</div> 
+</div> -->
 
 <div class="news-container ">
     <div class="news ">
@@ -25,13 +60,33 @@
                   <%- article.content.replace(/<[^>]+>/g, '') %>
                 </p>
                 <br>
-                <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:red;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
+                <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:5603AD;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
               </a>
             <% } %>
           <% }) %>
         </div>
     </div>
 
+    <div class="pagination">
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+        <li class="page-item active">
+          <span class="page-link">
+            1
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+    </div>
 
 <script src="moment.js"></script>
 <script src="moment-timezone-with-data.js"></script>
