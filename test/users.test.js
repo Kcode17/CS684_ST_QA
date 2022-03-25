@@ -91,7 +91,7 @@ chai.use(chaiHttp);
 
    it('GET user landing - Dashboard', (done) => {
     let User = {
-        _id: "623891984e1c9df50b7d34ad", //add valid ID here
+        _id: "6234c1e0e5fe2e6ad72245f7", //add valid ID here
     }    
     chai.request(app)
     .get('/dashboard') 
@@ -104,7 +104,7 @@ chai.use(chaiHttp);
 
    it('GET Specific user details', (done) => {
     let User = {
-        _id: "623891984e1c9df50b7d34ad", //add valid ID here
+        _id: "6234c1e0e5fe2e6ad72245f7", //add valid ID here
     }    
     chai.request(app)
     .get('/api/Users') 
@@ -117,12 +117,12 @@ chai.use(chaiHttp);
 
    it('UPDATE user details in DB', (done) => {
     let User = {
-        _id: "623891984e1c9df50b7d34ad", //add valid ID here
+        _id: "6234c1e0e5fe2e6ad72245f7", //add valid ID here
         general: "no"
     }
    
    chai.request(app)
-   .put('/api/users/623891984e1c9df50b7d34ad') //add valid ID here
+   .put('/api/users/6234c1e0e5fe2e6ad72245f7') //add valid ID here
    .send(User)
    .end((err, res) => {
        res.should.have.status(200);
@@ -132,7 +132,7 @@ chai.use(chaiHttp);
 
     it('Logout from the Application', (done) => {
          let User = {
-             _id: "623891984e1c9df50b7d34ad", //add valid ID here
+             _id: "6234c1e0e5fe2e6ad72245f7", //add valid ID here
          }    
     chai.request(app)
     .get('/users/logout') 
