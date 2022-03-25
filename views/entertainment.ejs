@@ -1,0 +1,44 @@
+<h2>Navigation Menu</h2>
+<p>In this example, we use CSS to style the list horizontally, to create a navigation menu:</p>
+
+
+<div class="w3-bar w3-border w3-light-grey">
+  <a href="/general" class="w3-bar-item w3-button">Home</a>
+  <a href="/general" class="w3-bar-item w3-button">General</a>
+  <a href="/sports" class="w3-bar-item w3-button">Sports</a>
+  <a href="/entertainment" class="w3-bar-item w3-button w3-deep-purple">Entertainment</a>
+  <a href="/business" class="w3-bar-item w3-button">Business</a>
+  <a href="/technology" class="w3-bar-item w3-button">Technology</a>
+  <a href="/science" class="w3-bar-item w3-button">Science</a>
+  <a href="/health" class="w3-bar-item w3-button">Health</a>
+</div>
+
+
+<div class="news-container ">
+    <div class="news ">
+        <% sources.forEach(function(sources,index){ %>
+          <% if ((typeof sources.url=='object') || (typeof sources.name=='object') || (typeof sources.description=='object') || (typeof sources.category=='object')){ %>
+            <% } else{ %>
+              <a href="<%- sources.url %>" target="_blank" class="news-box Hover-effect">
+                
+                <h3>
+                  <%- sources.name %>
+                </h3>
+                <h3>
+                  <%- sources.category %>
+                </h3>
+                <p>
+                  <%- sources.description.replace(/<[^>]+>/g, '') %>
+                </p>
+                <br>
+                </a>
+            <% } %>
+          <% }) %>
+        </div>
+    </div>
+
+<script src="moment.js"></script>
+<script src="moment-timezone-with-data.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
