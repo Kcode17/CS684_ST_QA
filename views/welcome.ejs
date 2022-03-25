@@ -1,14 +1,34 @@
 <html>
-<h1>Welcome!</h1>
+  
+  <div class="topnav">
+    <div class="container-nav" >
+      <a href="/">Transformers News</a>
+      <div class="topnav-right">
+        <a href="/users/login">Log In</a>
+        <a href="/users/register">Register</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="refresh">
+          <form method="GET" id="refresh" action="/">
+            <Button type="submit" class="btn btn-primary" >Refresh</Button>
+          </form> 
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="welcome-text">
+    <h3>Welcome</h3>
+    <h4>Log in to get curated news articles as per your preferences.</h4>
+  </div>
+<!--<h1>Welcome!</h1>
 <p>Create an account or login</p>
 <a href="/users/register">Register</a>
-<a href="/users/login"> Login</a>
+<a href="/users/login"> Login</a> -->
 
-
-<form method="GET" id="refresh" action="/">
-  <!-- <a href="/"> Refresh </a> -->
+<!--<form method="GET" id="refresh" action="/">
+   <a href="/"> Refresh </a> 
   <button type="submit" class="btn btn-primary btn-block" style="height:40px; width:100px;">Refresh</button>
-</form>
+</form>-->
 
 <body>
   <div class="news-container ">
@@ -25,7 +45,7 @@
                     <%- article.content.replace(/<[^>]+>/g, '') %>
                   </p>
                   <br>
-                  <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:red;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
+                  <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:rgb(116, 9, 165);" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
                 </a>
               <% } %>
             <% }) %>
