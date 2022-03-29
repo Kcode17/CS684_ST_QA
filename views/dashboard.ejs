@@ -1,19 +1,71 @@
-<h2>My Dashboard</h2>
-<p style = "float:right"> Welcome <%= user.name %></p>
-<a href="/users/logout" style = "float:right" >Logout</a>
+<div class="topnav">
+  <div class="container-nav" >
+    <a href="/dashboard/general">Transformers News</a>
+    <div class="topnav-right">
+      <div class="refresh">
+        <form method="GET" id="refresh" action="/dashboard/general">
+          <Button type="submit" class="btn btn-primary" >Refresh</Button>
+        </form> 
+      </div>
+      <a href="/users/update_user?id=<%= id %>">Settings</a>
+      <a href="/users/logout">Log out</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    
+  </div>
+</div>
 
-<form method="GET" id="refresh" action="/dashboard">
-  <!-- <a href="/"> Refresh </a> -->
+<div class="welcome-text">
+  <h2 style = "float:right"> Welcome <%= user.name %></h2>
+</div>
+<div class="welcome-text">
+  <h2>My Dashboard</h2>
+</div>
+
+<div class="w3-bar w3-border w3-light-grey">
+  <a href="/dashboard/home" class="w3-bar-item w3-button">Home</a>
+  <a href="/dashboard/general" class="w3-bar-item w3-button  w3-deep-purple">General</a>
+  <a href="/dashboard/sports" class="w3-bar-item w3-button">Sports</a>
+  <a href="/dashboard/entertainment" class="w3-bar-item w3-button">Entertainment</a>
+  <a href="/dashboard/business" class="w3-bar-item w3-button">Business</a>
+  <a href="/dashboard/technology" class="w3-bar-item w3-button">Technology</a>
+  <a href="/dashboard/science" class="w3-bar-item w3-button">Science</a>
+  <a href="/dashboard/health" class="w3-bar-item w3-button">Health</a>
+</div>
+
+<!-- <div class="tab">
+  <button class="tablinks" onclick="/news/general">Home</button>
+  <button class="tablinks" onclick="">General</button>
+  <button class="tablinks" onclick="">Business</button>
+  <button class="tablinks" onclick="">Entertainment</button>
+  <button class="tablinks" onclick="">Health</button>
+  <button class="tablinks" onclick="">Science</button>
+  <button class="tablinks" onclick="">Sports</button>
+  <button class="tablinks" onclick="">Technology</button>
+</div> -->
+
+
+<!--<h2>My Dashboard</h2>-->
+
+<!--<p style = "float:right"> Welcome <%= user.name %></p>-->
+
+
+
+
+<!--<a href="/users/logout" style = "float:right" >Logout</a>-->
+
+<!--<form method="GET" id="refresh" action="/dashboard">
+  <a href="/"> Refresh </a>
   <button type="submit" class="btn btn-primary btn-block" style="height:40px; width:100px;">Refresh</button>
-</form>
+</form>-->
 
-<div class="Sign-Up-Text" id="right">
+<!--<div class="Sign-Up-Text" id="right">
     <h3><a href="/users/update_user?id=<%= id %>"  class="text-decoration-none" style="float: right;"> Settings</a></h3>
-</div> 
+</div> -->
+
 
 <div class="news-container ">
     <div class="news ">
-        <% articles.forEach(function(article,index){ %>
+        <% articles.forEach(function(article, index){ %>
           <% if ((typeof article.url=='object') || (typeof article.title=='object') || (typeof article.urlToImage=='object') || (typeof article.content=='object')){ %>
             <% } else{ %>
               <a href="<%- article.url %>" target="_blank" class="news-box Hover-effect">
@@ -31,6 +83,31 @@
           <% }) %>
         </div>
     </div>
+
+    <div class="pagination">
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+        <li class="page-item active">
+          <span class="page-link">
+            1
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+    </div>
+
+    
+
+    
 
 
 <script src="moment.js"></script>

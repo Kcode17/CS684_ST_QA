@@ -1,44 +1,62 @@
-<h2>Navigation Menu</h2>
-<p>In this example, we use CSS to style the list horizontally, to create a navigation menu:</p>
+<div class="topnav">
+  <div class="container-nav" >
+    <a href="/dashboard/business">Transformers News</a>
+    <div class="topnav-right">
+      <div class="refresh">
+        <form method="GET" id="refresh" action="/dashboard/business">
+          <Button type="submit" class="btn btn-primary" >Refresh</Button>
+        </form> 
+      </div>
+      <a href="/users/update_user?id=<%= id %>">Settings</a>
+      <a href="/users/logout">Log out</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    
+  </div>
+</div>
+
+<div class="welcome-text">
+  <h2 style = "float:right"> Welcome <%= user.name %></h2>
+</div>
+<div class="welcome-text">
+  <h2>My Dashboard</h2>
+</div>
 
 
 <div class="w3-bar w3-border w3-light-grey">
-  <a href="/general" class="w3-bar-item w3-button">Home</a>
-  <a href="/general" class="w3-bar-item w3-button">General</a>
-  <a href="/sports" class="w3-bar-item w3-button">Sports</a>
-  <a href="/entertainment" class="w3-bar-item w3-button w3-deep-purple">Entertainment</a>
-  <a href="/business" class="w3-bar-item w3-button">Business</a>
-  <a href="/technology" class="w3-bar-item w3-button">Technology</a>
-  <a href="/science" class="w3-bar-item w3-button">Science</a>
-  <a href="/health" class="w3-bar-item w3-button">Health</a>
+  <a href="/dashboard/general" class="w3-bar-item w3-button">Home</a>
+  <a href="/dashboard/general" class="w3-bar-item w3-button">General</a>
+  <a href="/dashboard/sports" class="w3-bar-item w3-button">Sports</a>
+  <a href="/dashboard/entertainment" class="w3-bar-item w3-button w3-deep-purple">Entertainment</a>
+  <a href="/dashboard/business" class="w3-bar-item w3-button">Business</a>
+  <a href="/dashboard/technology" class="w3-bar-item w3-button">Technology</a>
+  <a href="/dashboard/science" class="w3-bar-item w3-button">Science</a>
+  <a href="/dashboard/health" class="w3-bar-item w3-button">Health</a>
 </div>
 
 
 <div class="news-container ">
-    <div class="news ">
-        <% sources.forEach(function(sources,index){ %>
-          <% if ((typeof sources.url=='object') || (typeof sources.name=='object') || (typeof sources.description=='object') || (typeof sources.category=='object')){ %>
-            <% } else{ %>
-              <a href="<%- sources.url %>" target="_blank" class="news-box Hover-effect">
-                
-                <h3>
-                  <%- sources.name %>
-                </h3>
-                <h3>
-                  <%- sources.category %>
-                </h3>
-                <p>
-                  <%- sources.description.replace(/<[^>]+>/g, '') %>
-                </p>
-                <br>
-                </a>
-            <% } %>
-          <% }) %>
-        </div>
-    </div>
+  <div class="news ">
+      <% articles.forEach(function(article,index){ %>
+        <% if ((typeof article.url=='object') || (typeof article.title=='object') || (typeof article.urlToImage=='object') || (typeof article.content=='object')){ %>
+          <% } else{ %>
+            <a href="<%- article.url %>" target="_blank" class="news-box Hover-effect">
+              <!-- <img src="<%- article.urlToImage %>" alt="Image"> -->
+              <h3>
+                <%- article.title %>
+              </h3>
+              <p>
+                <%- article.content.replace(/<[^>]+>/g, '') %>
+              </p>
+              <br>
+              <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:red;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
+            </a>
+          <% } %>
+        <% }) %>
+      </div>
+  </div>
 
 <script src="moment.js"></script>
 <script src="moment-timezone-with-data.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
