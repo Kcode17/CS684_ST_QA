@@ -1,5 +1,5 @@
 {
-  "name": "transformers",
+  "name": "another",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -27,9 +27,11 @@
     "mockgoose": "^8.0.4",
     "moment": "^2.29.1",
     "mongoose": "^6.2.6",
+    "node-fetch": "^3.2.3",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "request": "^2.88.2",
     "requests": "^0.3.0"
   },
   "devDependencies": {
