@@ -10,6 +10,7 @@ const controller = require('../controller/controller');
  *  @description for update user
  *  @method GET /update-user
  */
+
 route.get('/update_user', services.update_user)
 
 
@@ -17,6 +18,7 @@ route.get('/update_user', services.update_user)
 //route.post('/api/users', controller.create);
 route.get('/api/Users', controller.find);
 route.put('/api/Users/:id', controller.update);
+route.post('/api/Users/news/:id', controller.newsget);
 //route.delete('/api/users/:id', controller.delete);
 
 
