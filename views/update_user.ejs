@@ -79,156 +79,186 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
-    
-    
-</head>
-<body>
-    <div class="topnav">
-        <div class="container-nav" >
-          <a href="/dashboard">Transformers News</a>
-          <div class="topnav-right">
-            <a class="active" href="/users/update_user?id=<%= id %>">Settings</a>
-            <a href="/users/logout">Log out</a>
-          </div>
-          
-        </div>
-      </div>
-
-
-
-    <div class="container-settings">
-        <div class="content-settings">
-
-    <!--<form method="POST" action="/settings/" >-->
-    <form method="PUT" id="update_user" action="/dashboard">
-        <div class="form-group">
-            <h3> <label for="name" class="text-dark">Category Settings</label> </h3>
-            <input type="hidden" name="id" value="<%= id %>">
-            
-            
-        </div>
-
-
-        <div class="form-group">
-            <label for="general" class="text-dark">General</label>
-                <input type="radio" id="radio-2" name="general" value="yes" <%= general == 'yes' ? 'checked' : '' %>>
-                <label for="radio-2" class="radio-label">Yes</label>            
-                <input type="radio" id="radio-3" name="general" value="no"  <%= general == 'no' ? 'checked' : '' %> >
-                <label for="radio-3" class="radio-label">No</label>  
-        </div>
-
-        <div class="form-group">
-            <label for="sport" class="text-dark">Sport</label>
-                <input type="radio" id="radio-2" name="sport" value="yes" <%= sport == 'yes' ? 'checked' : '' %>>
-                <label for="radio-2" class="radio-label">Yes</label>            
-                <input type="radio" id="radio-3" name="sport" value="no"  <%= sport == 'no' ? 'checked' : '' %> >
-                <label for="radio-3" class="radio-label">No</label>  
-        </div>
-
-        <div class="form-group">
-            <label for="health" class="text-dark">Health</label>
-                <input type="radio" id="radio-2" name="health" value="yes" <%= health == 'yes' ? 'checked' : '' %>>
-                <label for="radio-2" class="radio-label">Yes</label>            
-                <input type="radio" id="radio-3" name="health" value="no"  <%= health == 'no' ? 'checked' : '' %> >
-                <label for="radio-3" class="radio-label">No</label>  
-        </div>
-
-        <div class="form-group">
-            <label for="science" class="text-dark">Science</label>
-                <input type="radio" id="radio-2" name="science" value="yes" <%= science == 'yes' ? 'checked' : '' %>>
-                <label for="radio-2" class="radio-label">Yes</label>            
-                <input type="radio" id="radio-3" name="science" value="no"  <%= science == 'no' ? 'checked' : '' %> >
-                <label for="radio-3" class="radio-label">No</label>  
-        </div>
-
-        <div class="form-group">
-            <label for="business" class="text-dark">Business</label>
-                <input type="radio" id="radio-2" name="business" value="yes" <%= business == 'yes' ? 'checked' : '' %>>
-                <label for="radio-2" class="radio-label">Yes</label>            
-                <input type="radio" id="radio-3" name="business" value="no"  <%= business == 'no' ? 'checked' : '' %> >
-                <label for="radio-3" class="radio-label">No</label>  
-        </div>
-
-        <div class="form-group">
-            <label for="technology" class="text-dark">Technology</label>
-                <input type="radio" id="radio-2" name="technology" value="yes" <%= technology == 'yes' ? 'checked' : '' %>>
-                <label for="radio-2" class="radio-label">Yes</label>            
-                <input type="radio" id="radio-3" name="technology" value="no"  <%= technology == 'no' ? 'checked' : '' %> >
-                <label for="radio-3" class="radio-label">No</label>  
-        </div>
-
-        <div class="form-group">
-            <label for="entertainment" class="text-dark">Entertainment</label>
-                <input type="radio" id="radio-2" name="entertainment" value="yes" <%= entertainment == 'yes' ? 'checked' : '' %>>
-                <label for="radio-2" class="radio-label">Yes</label>            
-                <input type="radio" id="radio-3" name="entertainment" value="no"  <%= entertainment == 'no' ? 'checked' : '' %> >
-                <label for="radio-3" class="radio-label">No</label>  
-        </div>
-
-       
-        
-        <div style="height:40px; width:100px; float: left;" class="form-group">
-            <button type="submit" class="btn btn-primary btn-block" style="height:40px; width:90px;">Save</button>
-        </div>
-
-        <div style="height:40px; width:100px; float: right;" class="form-group">
-            <a href="http://localhost:3000/dashboard/" class="btn btn-secondary active" style="height:40px; width:90px;"> Cancel</a>
-        </div>
         
         
-        <!--    
-        <div class="container-buttons">
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" style="height:40px; width:90px;">Save</button>
-            <div>
-
-            <div class="form-group">
-                <a href="http://localhost:3000/dashboard/" class="btn btn-secondary active" style="height:40px; width:90px;"> Cancel</a>
+    </head>
+    <body>
+        <div class="topnav">
+            <div class="container-nav" >
+            <a href="/dashboard">Transformers News</a>
+            <div class="topnav-right">
+                <a class="active" href="/users/update_user?id=<%= id %>">Settings</a>
+                <a href="/users/logout">Log out</a>
             </div>
-        </div>--> 
+            
+            </div>
+        </div>
+
+
+
+        <div class="container-settings">
+            
+            <div class="content-settings">
+
         
-    </form>
-</div>
-</div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-
-    <script>
-       $("#update_user").submit(function(event){
-      event.preventDefault();
-  
-      var unindexed_array = $(this).serializeArray();
-      var data = {}
-  
-      $.map(unindexed_array, function(n, i){
-          data[n['name']] = n['value']
-      })
-  
-  
-      var request = {
-          "url" : `http://localhost:3000/users/api/users/${data.id}`,
-          "method" : "PUT",
-          "data" : data
-      }
-  
-      $.ajax(request).done(function(response){
-          alert("Data Updated Successfully!");
-      })
-  
-  })
-  
+            
+                <form method="PUT" id="update_user" action="/dashboard">
+                    <div class="form-group">
+                        <h3> <label for="name" class="text-dark">Category Settings</label> </h3>
+                        <input type="hidden" name="id" value="<%= id %>">    
+                    </div>
 
 
-    </script>
+                <div class="form-group">
+                        <label for="general" class="text-dark">General</label>
+                            <input type="radio" id="radio-1" name="general" value="yes" <%= general == 'yes' ? 'checked' : '' %>>
+                            <label for="radio-2" class="radio-label">Yes</label>            
+                            <input type="radio" id="radio-2" name="general" value="no"  <%= general == 'no' ? 'checked' : '' %> >
+                            <label for="radio-3" class="radio-label">No</label>  
+                    </div>
 
-  </body>
+                    <div class="form-group">
+                        <label for="sport" class="text-dark">Sport</label>
+                            <input type="radio" id="radio-3" name="sport" value="yes" <%= sport == 'yes' ? 'checked' : '' %>>
+                            <label for="radio-2" class="radio-label">Yes</label>            
+                            <input type="radio" id="radio-4" name="sport" value="no"  <%= sport == 'no' ? 'checked' : '' %> >
+                            <label for="radio-3" class="radio-label">No</label>  
+                    </div>
+
+                    <div class="form-group">
+                        <label for="health" class="text-dark">Health</label>
+                            <input type="radio" id="radio-5" name="health" value="yes" <%= health == 'yes' ? 'checked' : '' %>>
+                            <label for="radio-2" class="radio-label">Yes</label>            
+                            <input type="radio" id="radio-6" name="health" value="no"  <%= health == 'no' ? 'checked' : '' %> >
+                            <label for="radio-3" class="radio-label">No</label>  
+                    </div>
+
+                    <div class="form-group">
+                        <label for="science" class="text-dark">Science</label>
+                            <input type="radio" id="radio-7" name="science" value="yes" <%= science == 'yes' ? 'checked' : '' %>>
+                            <label for="radio-2" class="radio-label">Yes</label>            
+                            <input type="radio" id="radio-8" name="science" value="no"  <%= science == 'no' ? 'checked' : '' %> >
+                            <label for="radio-3" class="radio-label">No</label>  
+                    </div>
+
+                    <div class="form-group">
+                        <label for="business" class="text-dark">Business</label>
+                            <input type="radio" id="radio-9" name="business" value="yes" <%= business == 'yes' ? 'checked' : '' %>>
+                            <label for="radio-2" class="radio-label">Yes</label>            
+                            <input type="radio" id="radio-10" name="business" value="no"  <%= business == 'no' ? 'checked' : '' %> >
+                            <label for="radio-3" class="radio-label">No</label>  
+                    </div>
+
+                    <div class="form-group">
+                        <label for="technology" class="text-dark">Technology</label>
+                            <input type="radio" id="radio-11" name="technology" value="yes" <%= technology == 'yes' ? 'checked' : '' %>>
+                            <label for="radio-2" class="radio-label">Yes</label>            
+                            <input type="radio" id="radio-12" name="technology" value="no"  <%= technology == 'no' ? 'checked' : '' %> >
+                            <label for="radio-3" class="radio-label">No</label>  
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entertainment" class="text-dark">Entertainment</label>
+                            <input type="radio" id="radio-13" name="entertainment" value="yes" <%= entertainment == 'yes' ? 'checked' : '' %>>
+                            <label for="radio-2" class="radio-label">Yes</label>            
+                            <input type="radio" id="radio-14" name="entertainment" value="no"  <%= entertainment == 'no' ? 'checked' : '' %> >
+                            <label for="radio-3" class="radio-label">No</label>  
+                    </div>
+
+
+
+
+                    
+                    <div style="height:40px; width:100px; float: left;" class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block" style="height:40px; width:90px;" onclick="validate_radio()">Save</button>
+                    </div>
+
+                    <div style="height:40px; width:100px; float: right;" class="form-group">
+                        <a href="http://localhost:3000/dashboard/" class="btn btn-secondary active" style="height:40px; width:90px;"> Cancel</a>
+                    </div>
+                    
+                    
+                    <!--    
+                    <div class="container-buttons">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" style="height:40px; width:90px;">Save</button>
+                        <div>
+
+                        <div class="form-group">
+                            <a href="http://localhost:3000/dashboard/" class="btn btn-secondary active" style="height:40px; width:90px;"> Cancel</a>
+                        </div>
+                    </div>--> 
+                    
+                </form>
+            </div>
+        </div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+        <script>
+
+            function validate_radio() 
+            {
+                if((document.getElementById('radio-1').checked) || (document.getElementById('radio-3').checked) ||(document.getElementById('radio-5').checked) || (document.getElementById('radio-7').checked) || (document.getElementById('radio-9').checked) || (document.getElementById('radio-11').checked) || (document.getElementById('radio-13').checked))
+                {
+                    
+                    return true;
+                }
+                else
+                {
+                    
+                    return false;
+                }
+            } 
+
+
+
+            
+            
+                $("#update_user").submit(function(event)
+                {
+                    if(validate_radio() == true)
+                    {
+
+                        
+                        event.preventDefault();
+            
+                        var unindexed_array = $(this).serializeArray();
+                        var data = {}
+            
+                        $.map(unindexed_array, function(n, i){
+                        data[n['name']] = n['value']
+                        })
+            
+            
+                        var request = {
+                            "url" : `http://localhost:3000/users/api/users/${data.id}`,
+                            "method" : "PUT",
+                            "data" : data
+                        } 
+            
+                        $.ajax(request).done(function(response){
+                        alert("Data Updated Successfully!");
+                        })
+                    }
+                    else
+                    {
+                        alert('Atleast one category should be selected');
+                    }
+                })
+            
+    
+        </script>
+
+    </body>
 </html>
   
