@@ -22,16 +22,19 @@
 </div>
 
 <div class="tab">
-  <button class="tablinks" onclick="">Home</button>
-  <button class="tablinks" onclick="">General</button>
-  <button class="tablinks" onclick="">Business</button>
-  <button class="tablinks" onclick="">Entertainment</button>
-  <button class="tablinks" onclick="">Health</button>
-  <button class="tablinks" onclick="">Science</button>
-  <button class="tablinks" onclick="">Sports</button>
-  <button class="tablinks" onclick="">Technology</button>
+  <button class="tablinks" onclick=""><a class="active" href="/dashboard">General</a></button>
+  <button class="tablinks" onclick=""><a href="/dashboard/sports">Sports</a></button>
+  <button class="tablinks" onclick=""><a href="/dashboard/entertainment">Entertainment</a></button>
+  <button class="tablinks" onclick=""><a href="/dashboard/health">Health</a></button>
+  <button class="tablinks" onclick=""><a href="/dashboard/science">Science</a></button>
+  <button class="tablinks" onclick=""><a href="/dashboard/business">Business</a></button>
+  <button class="tablinks" onclick=""><a href="/dashboard/technology">Technology</a></button>
 </div>
+<script>
+  
+  document.getElementById("defaultOpen").click();
 
+</script>
 
 
   <!--<a href="/users/logout" style = "float:right" >Logout</a>-->

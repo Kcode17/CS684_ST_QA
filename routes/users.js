@@ -205,4 +205,30 @@ req.logout();
 req.flash('success_msg','Now logged out');
 res.redirect('/'); 
 })
+
+router.get('/dashboard/sports',(req,res)=>{
+    res.render('dashboard_sports');
+})
+
+router.get('/dashboard/entertainment',(req,res)=>{
+    res.render('dashboard_entertainment');
+})
+
+router.get('/dashboard/health',(req,res)=>{
+    res.render('dashboard_health');
+})
+
+router.get('/dashboard/science',(req,res)=>{
+    res.render('dashboard_science');
+})
+
+router.get('/dashboard/business',(req,res)=>{
+    res.render('dashboard_business');
+})
+
+router.get('/dashboard/technology',(req,res)=>{
+    res.render('dashboard_technology');
+})
+
+
 module.exports  = router;
