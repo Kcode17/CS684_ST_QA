@@ -93,7 +93,7 @@
 <body>
     <div class="topnav">
         <div class="container-nav" >
-          <a href="/dashboard/home">Transformers News</a>
+          <a href="/dashboard/home/1">Transformers News</a>
           <div class="topnav-right">
             <a class="active" href="/users/update_user?id=<%= id %>">Settings</a>
             <a href="/users/logout">Log out</a>
@@ -108,7 +108,7 @@
         <div class="content-settings">
 
     <!--<form method="POST" action="/settings/" >-->
-    <form method="PUT" id="update_user" action="/dashboard/home">
+    <form method="PUT" id="update_user" action="/dashboard/home/1">
         <div class="form-group">
             <h3> <label for="name" class="text-dark">Category Settings</label> </h3>
             <input type="hidden" name="id" value="<%= id %>">
@@ -180,7 +180,7 @@
         </div>
 
         <div style="height:40px; width:100px; float: right;" class="form-group">
-            <a href="http://localhost:3000/dashboard/home" class="btn btn-secondary active" style="height:40px; width:90px;"> Cancel</a>
+            <a href="http://localhost:3000/dashboard/home/1" class="btn btn-secondary active" style="height:40px; width:90px;"> Cancel</a>
         </div>
         
         
