@@ -37,7 +37,7 @@ router.put('/api/Users/:id', controller.update);
 //Register handle
 router.post('/login',(req,res,next)=>{
 passport.authenticate('local',{
-    successRedirect : '/dashboard/home',
+    successRedirect : '/dashboard/home/1',
     failureRedirect: '/users/login',
     failureFlash : true
 })(req,res,next)

@@ -1,9 +1,9 @@
 <div class="topnav">
   <div class="container-nav" >
-    <a href="/dashboard/home">Transformers News</a>
+    <a href="dashboard/home/1">Transformers News</a>
     <div class="topnav-right">
       <div class="refresh">
-        <form method="GET" id="refresh" action="/dashboard/home">
+        <form method="GET" id="refresh" action="dashboard/home/1">
           <Button type="submit" class="btn btn-primary" >Refresh</Button>
         </form> 
       </div>
@@ -23,7 +23,7 @@
 
 
 <div class="w3-bar w3-border w3-light-grey">
-  <a href="/dashboard/home" class="w3-bar-item w3-button w3-deep-purple">Home</a>
+  <a href="/dashboard/home/1" class="w3-bar-item w3-button w3-deep-purple">Home</a>
   <a href="/dashboard/general" class="w3-bar-item w3-button">General</a>
   <a href="/dashboard/sports" class="w3-bar-item w3-button">Sports</a>
   <a href="/dashboard/entertainment" class="w3-bar-item w3-button">Entertainment</a>
@@ -37,16 +37,21 @@
 <div class="news-container ">
   <div class="news ">
       <% articles.forEach(function(article,index){ %>
-        <% if ((typeof article.url=='object') || (typeof article.title=='object') || (typeof article.urlToImage=='object') || (typeof article.content=='object')){ %>
+        <% if ((typeof article.url=='object') || (typeof article.title=='object')   ){ %>
           <% } else{ %>
             <a href="<%- article.url %>" target="_blank" class="news-box Hover-effect">
               <!-- <img src="<%- article.urlToImage %>" alt="Image"> -->
-              <h3>
+              <h4>
                 <%- article.title %>
-              </h3>
+              </h4>
               <p>
-                <%- article.content.replace(/<[^>]+>/g, '') %>
+                <%- article.description %>
               </p>
+              
+              <h5>
+                <%- article.source.name %>
+              </h5>
+              
               <br>
               <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:red;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
             </a>
@@ -55,7 +60,70 @@
       </div>
   </div>
 
-  <div class="pagination">
+  <!-- <div class="pagination">
+    <nav aria-label="...">
+  <% if (pages > 0) { %>
+    <ul class="pagination">
+        <% if (current === 1) { %>
+            <li class="page-item disabled"><a>First</a></li>
+        <% } else { %>
+            <li><a href="/dashboard/home/1">First</a></li>
+        <% } %>
+        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+        <% if (i !== 1) { %>
+            <li class="page-item disabled"><a>...</a></li>
+        <% } %>
+        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if (i === current) { %>
+                <li class="page-item active"><a><%= i %></a></li>
+            <% } else { %>
+                <li><a href="/dashboard/home/<%= i %>"><%= i %></a></li>
+            <% } %>
+            <% if (i === Number(current) + 4 && i < pages) { %>
+                <li class="page-item disabled"><a>...</a></li>
+            <% } %>
+        <% } %>
+        <% if (current === pages) { %>
+            <li class="page-item disabled"><a>Last</a></li>
+        <% } else { %>
+            <li><a href="/dashboard/home/<%= pages %>">Last</a></li>
+        <% } %>
+    </ul>
+<% } %>
+</div> -->
+
+<div class="pagination">
+<% if (pages > 0) { %>
+  
+      <% if (current === 1) { %>
+          <a>First</a>
+      <% } else { %>
+          <a href="/dashboard/home/1">First</a>
+      <% } %>
+      <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+      <% if (i !== 1) { %>
+          <a>...</a>
+      <% } %>
+      <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+          <% if (i === current) { %>
+              <a><%= i %></a>
+          <% } else { %>
+              <a href="/dashboard/home/<%= i %>"><%= i %></a>
+          <% } %>
+          <% if (i === Number(current) + 4 && i < pages) { %>
+              <a>...</a>
+          <% } %>
+      <% } %>
+      <% if (current === pages) { %>
+          <a>Last</a>
+      <% } else { %>
+          <a href="/dashboard/home/<%= pages %>">Last</a>
+      <% } %>
+  
+<% } %>
+</div>
+
+  <!-- <div class="pagination">
     <nav aria-label="...">
       <ul class="pagination">
         <li class="page-item disabled">
@@ -74,7 +142,10 @@
         </li>
       </ul>
     </nav>
-    </div>
+    </div> -->
+
+     <!--Display the links to the pages-->
+     
 
 
 <script src="moment.js"></script>
