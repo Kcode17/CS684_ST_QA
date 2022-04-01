@@ -510,66 +510,80 @@ router.get("/news/users/:id", async (req, res) => {
     const user = await User.findOne({ _id: userId });
     
     if (!user) {
-        return res.status(401).json({ message: "Error retrieving user with id " });
+        return res.status(401).json({ message: "User is not recognized (unauthorized)" });
       }
     try{
         if (!user) {
-          return res.status(401).json({ message: "Error retrieving user with id " });
+          return res.status(401).json({ message: "User is not recognized (unauthorized)" });
         }
         else {
             if(user.general === 'yes'){
-                  var url1 = 'http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19';
+                  var url1 = 'http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
                   const news_get =await axios.get(url1)
-                  for (let i = 0; i < 20; i++) {
+                  for (let i = 0; i < 100; i++) {
                       art.push(news_get.data.articles[i])
                     } 
               }   
               if(user.business === 'yes'){
-                  var url2 = 'http://newsapi.org/v2/top-headlines?category=business&apiKey=f75068836d0a45159177374141456b19';
+                  var url2 = 'http://newsapi.org/v2/top-headlines?category=business&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
                   const news_bus =await axios.get(url2)
-                  for (let i = 0; i < 20; i++) {
+                  for (let i = 0; i < 100; i++) {
                       art.push(news_bus.data.articles[i])
                     }  
               }   
               if(user.entertainment === 'yes'){
-                  var url3 = 'http://newsapi.org/v2/top-headlines?category=entertainment&apiKey=f75068836d0a45159177374141456b19';
+                  var url3 = 'http://newsapi.org/v2/top-headlines?category=entertainment&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
                   const news_ent =await axios.get(url3)
-                  for (let i = 0; i < 20; i++) {
+                  for (let i = 0; i < 100; i++) {
                       art.push(news_ent.data.articles[i])
                     } 
               }   
               if(user.health === 'yes'){
                 console.log("User health");
-                  var url4 = 'http://newsapi.org/v2/top-headlines?category=health&apiKey=f75068836d0a45159177374141456b19';
+                  var url4 = 'http://newsapi.org/v2/top-headlines?category=health&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
                   const news_hlt =await axios.get(url4)
-                  for (let i = 0; i < 20; i++) {
+                  for (let i = 0; i < 100; i++) {
                       art.push(news_hlt.data.articles[i])
                   }
               }   
               if(user.science === 'yes'){
-                  var url5 = 'http://newsapi.org/v2/top-headlines?category=science&apiKey=f75068836d0a45159177374141456b19';
+                  var url5 = 'http://newsapi.org/v2/top-headlines?category=science&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
                   const news_sci =await axios.get(url5)
-                  for (let i = 0; i < 20; i++) {
+                  for (let i = 0; i < 100; i++) {
                       art.push(news_sci.data.articles[i])
                   } 
               }   
               if(user.sport === 'yes'){
                   
-                  var url6 = 'http://newsapi.org/v2/top-headlines?category=sports&apiKey=f75068836d0a45159177374141456b19';
+                  var url6 = 'http://newsapi.org/v2/top-headlines?category=sports&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
                   const news_sport =await axios.get(url6)
-                  for (let i = 0; i < 20; i++) {
+                  for (let i = 0; i < 100; i++) {
                       art.push(news_sport.data.articles[i])
                   }   
               }  
               if(user.technology === 'yes'){
-                  var url7 = 'http://newsapi.org/v2/top-headlines?category=technology&apiKey=f75068836d0a45159177374141456b19';
+                  var url7 = 'http://newsapi.org/v2/top-headlines?category=technology&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
                   const news_tech =await axios.get(url7)
-                  for (let i = 0; i < 20; i++) {
+                  for (let i = 0; i < 100; i++) {
                       art.push(news_tech.data.articles[i])
                   }   
-              }  
+              }
+
+        //Sorting the consolidated articles data
+        const arr = art
+        const sortByDate = arr => {
+        const sorter = (a, b) => {
+            return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+        }
+        arr.sort(sorter);
+    };
+        sortByDate(arr);
+        const articles = {}
+        articles.articles = arr.slice(0,250)  
+        //const articles = {}      
+        //articles.articles = art
               
-      res.status(200).json(art)
+      res.status(200).json(articles)
         }
     }
     catch (err){
@@ -582,14 +596,16 @@ router.get("/news/users/:id", async (req, res) => {
   // INDIVIDUAL CATEGORY API
 
   // REST API WORKING GOOD!!!
-router.get("/news/general", async (req, res) => {
-	try {
+router.get("/news/category/:category", async (req, res) => {
+	var category = req.params.category;
+    try {
 		const response = await axios({
-			url: "http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19",
+			url: "http://newsapi.org/v2/top-headlines?category=" + category + "&apiKey=f75068836d0a45159177374141456b19&pageSize=100",
 			method: "get",
 		});
-		//res.status(200).send(response.data);
-        res.status(200).render('dashboard',{articles:response.data.articles})
+		res.status(200).send(response.data);
+        //res.status(200).render('dashboard',{articles:response.data.articles})
+        //res.status(200).json(response)
     } catch (err) {
 		res.status(500).json({ message: err });
 	}
