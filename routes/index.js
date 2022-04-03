@@ -7,15 +7,44 @@ const User = require("../models/user");
 
 const {ensureAuthenticated} = require('../config/auth')
 
-router.get('/',async(req,res)=>{
-    var api = 'http://newsapi.org/v2/top-headlines?'
-    var country = 'country=us'
-    var category = '&General'
-    var apiKey = '&apiKey=f75068836d0a45159177374141456b19' 
+router.get('/', async(req,res) => {
+    res.redirect('/1')
+})
+
+router.get('/:page',async(req,res)=>{
+    const art = []
     try {
-        var url = api + country + category + apiKey
         const news_get =await axios.get(url)
-        res.status(200).render('welcome',{articles:news_get.data.articles})
+        for (let i = 0; i < 100; i++) {
+            art.push(news_get.data.articles[i])
+          }
+
+          const arr = art
+          const sortByDate = arr => {
+          const sorter = (a, b) => {
+              return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          }
+          arr.sort(sorter);
+      };
+          sortByDate(arr);
+          const reach = {}
+          reach.reach = arr.slice(0,250)
+        
+        const page = req.params.page || 1
+        const limit = 20
+        const countt = reach.reach.length
+        const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+        const endIndex= ((page * limit))
+
+        const results = {}
+        results.results = reach.reach.slice(startIndex, endIndex)  //art
+        res.status(200).render('welcome', {
+            articles: results.results,
+            pages: Math.ceil(countt / limit),
+            current: page
+            })
+
+        //res.status(200).render('welcome',{articles:news_get.data.articles})
     } catch (error) {
         if(error.response){
             console.log(error)
@@ -230,117 +259,299 @@ router.get('/dashboard/home/:page', ensureAuthenticated, async(req,res)=>{
 /// END OF alternate to critical code
 
 
-router.get('/dashboard/general',ensureAuthenticated, async(req,res)=>{
+router.get('/dashboard/general/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
-        try {    
-            var url1 = 'http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19';
-            const news_get =await axios.get(url1)
-            for (let i = 0; i < 20; i++) {
-                art.push(news_get.data.articles[i])
-                }     
-                res.status(200).render('general',{articles:art, user: req.user, id: req.user._id})    
-                } catch (error) {
-                    if(error.response){
-                        console.log(error)
-                    }
-                }
-    });
-
-router.get('/dashboard/health',ensureAuthenticated, async(req,res)=>{
-    const art = []
-    try {     
-        var url1 = 'http://newsapi.org/v2/top-headlines?category=health&apiKey=f75068836d0a45159177374141456b19';
-        const news_get =await axios.get(url1)
-        for (let i = 0; i < 20; i++) {
+    try {
+        var url = 'http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        const news_get =await axios.get(url)
+        for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
-            }     
-        res.status(200).render('health',{articles:art, user: req.user, id: req.user._id})               
-        } catch (error) {
-            if(error.response){
-                console.log(error)
-                }
-            }
-    });
+          }
+
+          const arr = art
+          const sortByDate = arr => {
+          const sorter = (a, b) => {
+              return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          }
+          arr.sort(sorter);
+      };
+          sortByDate(arr);
+          const reach = {}
+          reach.reach = arr.slice(0,250)
+        
+        const page = req.params.page || 1
+        const limit = 20
+        const countt = reach.reach.length
+        const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+        const endIndex= ((page * limit))
+
+        const results = {}
+        results.results = reach.reach.slice(startIndex, endIndex)  //art
+        res.status(200).render('general', {
+            articles: results.results,
+            pages: Math.ceil(countt / limit),
+            current: page,
+            user: req.user,
+            id: req.user._id
+            })
+    } catch (error) {
+        if(error.response){
+            console.log(error)
+        }
+    }
+})
+
+router.get('/dashboard/health/:page',ensureAuthenticated, async(req,res)=>{
+    const art = []
+    try {
+        var url = 'http://newsapi.org/v2/top-headlines?category=health&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        const news_get =await axios.get(url)
+        for (let i = 0; i < 100; i++) {
+            art.push(news_get.data.articles[i])
+          }
+
+          const arr = art
+          const sortByDate = arr => {
+          const sorter = (a, b) => {
+              return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          }
+          arr.sort(sorter);
+      };
+          sortByDate(arr);
+          const reach = {}
+          reach.reach = arr.slice(0,250)
+        
+        const page = req.params.page || 1
+        const limit = 20
+        const countt = reach.reach.length
+        const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+        const endIndex= ((page * limit))
+
+        const results = {}
+        results.results = reach.reach.slice(startIndex, endIndex)  //art
+        res.status(200).render('health', {
+            articles: results.results,
+            pages: Math.ceil(countt / limit),
+            current: page,
+            user: req.user,
+            id: req.user._id
+            })
+    } catch (error) {
+        if(error.response){
+            console.log(error)
+        }
+    }
+});
        
-router.get('/dashboard/entertainment',ensureAuthenticated, async(req,res)=>{
+router.get('/dashboard/entertainment/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
-    try {     
-        var url1 = 'http://newsapi.org/v2/top-headlines?category=entertainment&apiKey=f75068836d0a45159177374141456b19';
-        const news_get =await axios.get(url1)
-        for (let i = 0; i < 20; i++) {
+    try {
+        var url = 'http://newsapi.org/v2/top-headlines?category=entertainment&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        const news_get =await axios.get(url)
+        for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
-            }     
-        res.status(200).render('entertainment',{articles:art, user: req.user, id: req.user._id})               
-        } catch (error) {
-            if(error.response){
-                console.log(error)
-                }
-            }
-    });
+          }
 
-router.get('/dashboard/science',ensureAuthenticated, async(req,res)=>{
+          const arr = art
+          const sortByDate = arr => {
+          const sorter = (a, b) => {
+              return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          }
+          arr.sort(sorter);
+      };
+          sortByDate(arr);
+          const reach = {}
+          reach.reach = arr.slice(0,250)
+        
+        const page = req.params.page || 1
+        const limit = 20
+        const countt = reach.reach.length
+        const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+        const endIndex= ((page * limit))
+
+        const results = {}
+        results.results = reach.reach.slice(startIndex, endIndex)  //art
+        res.status(200).render('entertainment', {
+            articles: results.results,
+            pages: Math.ceil(countt / limit),
+            current: page,
+            user: req.user,
+            id: req.user._id
+            })
+    } catch (error) {
+        if(error.response){
+            console.log(error)
+        }
+    }
+});
+
+router.get('/dashboard/science/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
-    try {     
-        var url1 = 'http://newsapi.org/v2/top-headlines?category=science&apiKey=f75068836d0a45159177374141456b19';
-        const news_get =await axios.get(url1)
-        for (let i = 0; i < 20; i++) {
+    try {
+        var url = 'http://newsapi.org/v2/top-headlines?category=science&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        const news_get =await axios.get(url)
+        for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
-            }     
-        res.status(200).render('science',{articles:art, user: req.user, id: req.user._id})               
-        } catch (error) {
-            if(error.response){
-                console.log(error)
-                }
-            }
-    });
+          }
 
-router.get('/dashboard/business',ensureAuthenticated, async(req,res)=>{
+          const arr = art
+          const sortByDate = arr => {
+          const sorter = (a, b) => {
+              return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          }
+          arr.sort(sorter);
+      };
+          sortByDate(arr);
+          const reach = {}
+          reach.reach = arr.slice(0,250)
+        
+        const page = req.params.page || 1
+        const limit = 20
+        const countt = reach.reach.length
+        const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+        const endIndex= ((page * limit))
+
+        const results = {}
+        results.results = reach.reach.slice(startIndex, endIndex)  //art
+        res.status(200).render('science', {
+            articles: results.results,
+            pages: Math.ceil(countt / limit),
+            current: page,
+            user: req.user,
+            id: req.user._id
+            })
+    } catch (error) {
+        if(error.response){
+            console.log(error)
+        }
+    }
+});
+
+router.get('/dashboard/business/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
-    try {     
-        var url1 = 'http://newsapi.org/v2/top-headlines?category=business&apiKey=f75068836d0a45159177374141456b19';
-        const news_get =await axios.get(url1)
-        for (let i = 0; i < 20; i++) {
+    try {
+        var url = 'http://newsapi.org/v2/top-headlines?category=business&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        const news_get =await axios.get(url)
+        for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
-            }     
-        res.status(200).render('business',{articles:art, user: req.user, id: req.user._id})               
-        } catch (error) {
-            if(error.response){
-                console.log(error)
-                }
-            }
-    });
+          }
 
-router.get('/dashboard/sports',ensureAuthenticated, async(req,res)=>{
+          const arr = art
+          const sortByDate = arr => {
+          const sorter = (a, b) => {
+              return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          }
+          arr.sort(sorter);
+      };
+          sortByDate(arr);
+          const reach = {}
+          reach.reach = arr.slice(0,250)
+        
+        const page = req.params.page || 1
+        const limit = 20
+        const countt = reach.reach.length
+        const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+        const endIndex= ((page * limit))
+
+        const results = {}
+        results.results = reach.reach.slice(startIndex, endIndex)  //art
+        res.status(200).render('business', {
+            articles: results.results,
+            pages: Math.ceil(countt / limit),
+            current: page,
+            user: req.user,
+            id: req.user._id
+            })
+    } catch (error) {
+        if(error.response){
+            console.log(error)
+        }
+    }
+});
+
+router.get('/dashboard/sports/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
-    try {     
-        var url1 = 'http://newsapi.org/v2/top-headlines?category=sports&apiKey=f75068836d0a45159177374141456b19';
-        const news_get =await axios.get(url1)
-        for (let i = 0; i < 20; i++) {
+    try {
+        var url = 'http://newsapi.org/v2/top-headlines?category=sports&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        const news_get =await axios.get(url)
+        for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
-            }     
-        res.status(200).render('sports',{articles:art, user: req.user, id: req.user._id})               
-        } catch (error) {
-            if(error.response){
-                console.log(error)
-                }
-            }
-    });
+          }
 
-    router.get('/dashboard/technology',ensureAuthenticated, async(req,res)=>{
+          const arr = art
+          const sortByDate = arr => {
+          const sorter = (a, b) => {
+              return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          }
+          arr.sort(sorter);
+      };
+          sortByDate(arr);
+          const reach = {}
+          reach.reach = arr.slice(0,250)
+        
+        const page = req.params.page || 1
+        const limit = 20
+        const countt = reach.reach.length
+        const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+        const endIndex= ((page * limit))
+
+        const results = {}
+        results.results = reach.reach.slice(startIndex, endIndex)  //art
+        res.status(200).render('sports', {
+            articles: results.results,
+            pages: Math.ceil(countt / limit),
+            current: page,
+            user: req.user,
+            id: req.user._id
+            })
+    } catch (error) {
+        if(error.response){
+            console.log(error)
+        }
+    }
+});
+
+    router.get('/dashboard/technology/:page',ensureAuthenticated, async(req,res)=>{
         const art = []
-        try {     
-            var url1 = 'http://newsapi.org/v2/top-headlines?category=technology&apiKey=f75068836d0a45159177374141456b19';
-            const news_get =await axios.get(url1)
-            for (let i = 0; i < 20; i++) {
-                art.push(news_get.data.articles[i])
-                }     
-            res.status(200).render('technology',{articles:art, user: req.user, id: req.user._id})               
-            } catch (error) {
-                if(error.response){
-                    console.log(error)
-                    }
-                }
-        });
+    try {
+        var url = 'http://newsapi.org/v2/top-headlines?category=technology&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        const news_get =await axios.get(url)
+        for (let i = 0; i < 100; i++) {
+            art.push(news_get.data.articles[i])
+          }
+
+          const arr = art
+          const sortByDate = arr => {
+          const sorter = (a, b) => {
+              return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          }
+          arr.sort(sorter);
+      };
+          sortByDate(arr);
+          const reach = {}
+          reach.reach = arr.slice(0,250)
+        
+        const page = req.params.page || 1
+        const limit = 20
+        const countt = reach.reach.length
+        const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+        const endIndex= ((page * limit))
+
+        const results = {}
+        results.results = reach.reach.slice(startIndex, endIndex)  //art
+        res.status(200).render('technology', {
+            articles: results.results,
+            pages: Math.ceil(countt / limit),
+            current: page,
+            user: req.user,
+            id: req.user._id
+            })
+    } catch (error) {
+        if(error.response){
+            console.log(error)
+        }
+    }
+});
 
 router.get('/general',async(req,res)=>{
     //var api = 'https://newsapi.org/v2/top-headlines/sources?category='

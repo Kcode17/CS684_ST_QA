@@ -2,12 +2,12 @@
   
   <div class="topnav">
     <div class="container-nav" >
-      <a href="/">Transformers News</a>
+      <a href="/1">Transformers News</a>
       <div class="topnav-right">
         <a href="/users/login">Log In</a>
         <a href="/users/register">Register</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="refresh">
-          <form method="GET" id="refresh" action="/">
+          <form method="GET" id="refresh" action="/1">
             <Button type="submit" class="btn btn-primary" >Refresh</Button>
           </form> 
         </div>
@@ -54,24 +54,34 @@
   
 
       <div class="pagination">
-        <nav aria-label="...">
-          <ul class="pagination">
-            <li class="page-item disabled">
-              <span class="page-link">Previous</span>
-            </li>
-            <li class="page-item active">
-              <span class="page-link">
-                1
-                <span class="sr-only">(current)</span>
-              </span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </ul>
-        </nav>
+        <% if (pages > 0) { %>
+          
+              <% if (current === 1) { %>
+                  <a>First</a>
+              <% } else { %>
+                  <a href="/1">First</a>
+              <% } %>
+              <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+              <% if (i !== 1) { %>
+                  <a>...</a>
+              <% } %>
+              <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                  <% if (i === current) { %>
+                      <a><%= i %></a>
+                  <% } else { %>
+                      <a href="/<%= i %>"><%= i %></a>
+                  <% } %>
+                  <% if (i === Number(current) + 4 && i < pages) { %>
+                      <a>...</a>
+                  <% } %>
+              <% } %>
+              <% if (current === pages) { %>
+                  <a>Last</a>
+              <% } else { %>
+                  <a href="/<%= pages %>">Last</a>
+              <% } %>
+          
+        <% } %>
         </div>
 
 

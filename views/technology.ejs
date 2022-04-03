@@ -1,9 +1,9 @@
 <div class="topnav">
   <div class="container-nav" >
-    <a href="/dashboard/technology">Transformers News</a>
+    <a href="/dashboard/technology/1">Transformers News</a>
     <div class="topnav-right">
       <div class="refresh">
-        <form method="GET" id="refresh" action="/dashboard/technology">
+        <form method="GET" id="refresh" action="/dashboard/technology/1">
           <Button type="submit" class="btn btn-primary" >Refresh</Button>
         </form> 
       </div>
@@ -25,13 +25,13 @@
 
 <div class="w3-bar w3-border w3-light-grey">
   <a href="/dashboard/home/1" class="w3-bar-item w3-button ">Home</a>
-  <a href="/dashboard/general" class="w3-bar-item w3-button">General</a>
-  <a href="/dashboard/sports" class="w3-bar-item w3-button">Sports</a>
-  <a href="/dashboard/entertainment" class="w3-bar-item w3-button">Entertainment</a>
-  <a href="/dashboard/business" class="w3-bar-item w3-button">Business</a>
-  <a href="/dashboard/technology" class="w3-bar-item w3-button w3-deep-purple">Technology</a>
-  <a href="/dashboard/science" class="w3-bar-item w3-button">Science</a>
-  <a href="/dashboard/health" class="w3-bar-item w3-button">Health</a>
+  <a href="/dashboard/general/1" class="w3-bar-item w3-button">General</a>
+  <a href="/dashboard/sports/1" class="w3-bar-item w3-button">Sports</a>
+  <a href="/dashboard/entertainment/1" class="w3-bar-item w3-button">Entertainment</a>
+  <a href="/dashboard/business/1" class="w3-bar-item w3-button">Business</a>
+  <a href="/dashboard/technology/1" class="w3-bar-item w3-button w3-deep-purple">Technology</a>
+  <a href="/dashboard/science/1" class="w3-bar-item w3-button">Science</a>
+  <a href="/dashboard/health/1" class="w3-bar-item w3-button">Health</a>
 </div>
 
 
@@ -55,6 +55,37 @@
         <% }) %>
       </div>
   </div>
+
+  <div class="pagination">
+    <% if (pages > 0) { %>
+      
+          <% if (current === 1) { %>
+              <a>First</a>
+          <% } else { %>
+              <a href="/dashboard/technology/1">First</a>
+          <% } %>
+          <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+          <% if (i !== 1) { %>
+              <a>...</a>
+          <% } %>
+          <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+              <% if (i === current) { %>
+                  <a><%= i %></a>
+              <% } else { %>
+                  <a href="/dashboard/technology/<%= i %>"><%= i %></a>
+              <% } %>
+              <% if (i === Number(current) + 4 && i < pages) { %>
+                  <a>...</a>
+              <% } %>
+          <% } %>
+          <% if (current === pages) { %>
+              <a>Last</a>
+          <% } else { %>
+              <a href="/dashboard/technology/<%= pages %>">Last</a>
+          <% } %>
+      
+    <% } %>
+    </div>
 
 <script src="moment.js"></script>
 <script src="moment-timezone-with-data.js"></script>

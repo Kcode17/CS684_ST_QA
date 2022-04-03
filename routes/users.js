@@ -205,7 +205,7 @@ router.get('/update_user', (req, res) => {
 router.get('/logout',(req,res)=>{
 req.logout();
 req.flash('success_msg','Now logged out');
-res.redirect('/'); 
+res.redirect('/1'); 
 })
 
 
