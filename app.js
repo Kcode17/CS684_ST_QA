@@ -9,6 +9,10 @@ const session = require('express-session');
 const passport = require("passport");
 const axios = require('axios');
 const moment = require('moment');
+const Request = require('request');
+const { pipeline } = require('stream');
+
+
 app.locals.moment = moment;
 const math = require('math');
 
@@ -89,6 +93,34 @@ app.use('/users',require('./routes/users'));
   //app.use("/api/user", authRoutes); //authentication routes (register, login)
   //app.use("/api/products", productRoutes); //CRUD routes
 
+// Request.get("http://newsapi.org/v2/top-headlines?category=general&apiKey=ab753779157548ca9437dd1cf4c6cec6", (error, response, body) => {
+//   if(error){
+//     return console.dir(error);
+//   }
+//   console.dir(JSON.parse(body));
+// })
+
+app.get("/news/:id", async (req, res) => {
+  var userId = req.params.id;
+  const user = await User.findOne({ _id: userId });
+  try{
+      if (!user) {
+        res.status(401).json({ message: "Error retrieving user with id " });
+      }
+          else {
+            console.log("User exists");
+      console.log(userId)
+      const response = await axios({
+      url: "http://newsapi.org/v2/top-headlines?category=general&apiKey=ab753779157548ca9437dd1cf4c6cec6",
+      method: "get",
+        });
+      res.status(200).json(response.data)
+          }
+      }
+  catch (err){
+      res.status(500).json({ message: "Error retrieving user with id " });
+  }
+});
 
 
 
