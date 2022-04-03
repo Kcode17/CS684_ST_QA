@@ -30,12 +30,14 @@ router.get('/register', (req,res)=>{
 // router.get('/update_user', services.update_user)
 
 router.get('/api/Users', controller.find);
+router.post('/api/Users/news/:id', controller.newsget);
 router.put('/api/Users/:id', controller.update);
+
 
 //Register handle
 router.post('/login',(req,res,next)=>{
 passport.authenticate('local',{
-    successRedirect : '/dashboard',
+    successRedirect : '/dashboard/home/1',
     failureRedirect: '/users/login',
     failureFlash : true
 })(req,res,next)
@@ -71,71 +73,71 @@ router.get('/update_user', (req, res) => {
                             });
   });  
 
+//NOT REQUIRED
+//   router.get("update_user/:id", async (req, res)=>{
+//     User.findById(req.params.id, (err,doc) => {
+//       if (!err) {
+//          res.render("update_user", {
+//            viewTitle: "Update User",
+//            user: doc 
+//         // res.render("/update_user", { id: req.user._id,
+//         //   general: req.user.general
+//         })
+//       }
+//     });
+//     try{
+//       const user = await User.findById(req.params.id)
+//       res.json(user)
+//     }catch(err){
+//       res.send('Error' + err)
+//     }
+//   })
 
-  router.get("update_user/:id", async (req, res)=>{
-    User.findById(req.params.id, (err,doc) => {
-      if (!err) {
-         res.render("update_user", {
-           viewTitle: "Update User",
-           user: doc 
-        // res.render("/update_user", { id: req.user._id,
-        //   general: req.user.general
-        })
-      }
-    });
-    try{
-      const user = await User.findById(req.params.id)
-      res.json(user)
-    }catch(err){
-      res.send('Error' + err)
-    }
-  })
 
-
-  router.post('/api/Users/:id', (req, res) => {
-    // Reading isbn from the URL
-    const id = req.params.id;
-    const generalupdate = req.body.general;
-    // const generalupdate = req.body.general;
-    // const businessupdate = req.body.business;
-    // const entertainmentupdate = req.body.entertainment;
-    // const healthupdate = req.body.health;
-    // const scienceupdate = req.body.science;
-    // const technologyupdate = req.body.technology;
+// router.post('/api/Users/:id', (req, res) => {
+//     // Reading isbn from the URL
+//     const id = req.params.id;
+//     const generalupdate = req.body.general;
+//     // const generalupdate = req.body.general;
+//     // const businessupdate = req.body.business;
+//     // const entertainmentupdate = req.body.entertainment;
+//     // const healthupdate = req.body.health;
+//     // const scienceupdate = req.body.science;
+//     // const technologyupdate = req.body.technology;
   
   
-    // Remove item from the books array
-    for (let i = 0; i <User.length; i++) {
-        let user = User[i]
-        if (user.id === id) {
-            user.general = generalupdate;
-        }
-    }
+//     // Remove item from the books array
+//     for (let i = 0; i <User.length; i++) {
+//         let user = User[i]
+//         if (user.id === id) {
+//             user.general = generalupdate;
+//         }
+//     }
   
-    res.send('UPDATED');
-  });
+//     res.send('UPDATED');
+//   });
   
 
-  router.post('/update/:id', (req, res) => {
-    // Reading isbn from the URL
-    const id = req.params.id;
-    const generalupdate = req.body.general;
-    // const generalupdate = req.body.general;
-    // const businessupdate = req.body.business;
-    // const entertainmentupdate = req.body.entertainment;
-    // const healthupdate = req.body.health;
-    // const scienceupdate = req.body.science;
-    // const technologyupdate = req.body.technology;
+// router.post('/update/:id', (req, res) => {
+//     // Reading isbn from the URL
+//     const id = req.params.id;
+//     const generalupdate = req.body.general;
+//     // const generalupdate = req.body.general;
+//     // const businessupdate = req.body.business;
+//     // const entertainmentupdate = req.body.entertainment;
+//     // const healthupdate = req.body.health;
+//     // const scienceupdate = req.body.science;
+//     // const technologyupdate = req.body.technology;
 
-    // Remove item from the books array
-    for (let i = 0; i <User.length; i++) {
-        let user = User[i]
-        if (user.id === id) {
-            user.general = generalupdate;
-        }
-    }
-    res.send('UPDATED');
-  });
+//     // Remove item from the books array
+//     for (let i = 0; i <User.length; i++) {
+//         let user = User[i]
+//         if (user.id === id) {
+//             user.general = generalupdate;
+//         }
+//     }
+//     res.send('UPDATED');
+//   });
 
   //register post handle
   router.post('/register',(req,res)=>{
@@ -205,4 +207,30 @@ req.logout();
 req.flash('success_msg','Now logged out');
 res.redirect('/'); 
 })
+
+
+router.get('/api/Users/news/:id', (req, res) => {
+    const id = req.params.id;  
+  
+    for (let i = 0; i <User.length; i++) {
+        let user = User[i]
+        if (user.id === id) {
+            axios
+                .get('http://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=36f3e29b704f41339af8439dc1228334')
+                .then(response => {
+                let userData = response.data;
+                res.send(userData);})
+                  
+                
+        }
+    }
+  
+  });
+
+
+
+  
+
+
+
 module.exports  = router;

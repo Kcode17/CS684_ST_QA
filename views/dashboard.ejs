@@ -1,9 +1,9 @@
 <div class="topnav">
   <div class="container-nav" >
-    <a href="/dashboard">Transformers News</a>
+    <a href="/dashboard/general">Transformers News</a>
     <div class="topnav-right">
       <div class="refresh">
-        <form method="GET" id="refresh" action="/dashboard">
+        <form method="GET" id="refresh" action="/dashboard/general">
           <Button type="submit" class="btn btn-primary" >Refresh</Button>
         </form> 
       </div>
@@ -21,8 +21,19 @@
   <h2>My Dashboard</h2>
 </div>
 
-<div class="tab">
-  <button class="tablinks" onclick="">Home</button>
+<div class="w3-bar w3-border w3-light-grey">
+  <a href="/dashboard/home" class="w3-bar-item w3-button">Home</a>
+  <a href="/dashboard/general" class="w3-bar-item w3-button  w3-deep-purple">General</a>
+  <a href="/dashboard/sports" class="w3-bar-item w3-button">Sports</a>
+  <a href="/dashboard/entertainment" class="w3-bar-item w3-button">Entertainment</a>
+  <a href="/dashboard/business" class="w3-bar-item w3-button">Business</a>
+  <a href="/dashboard/technology" class="w3-bar-item w3-button">Technology</a>
+  <a href="/dashboard/science" class="w3-bar-item w3-button">Science</a>w
+  <a href="/dashboard/health" class="w3-bar-item w3-button">Health</a>
+</div>
+
+<!-- <div class="tab">
+  <button class="tablinks" onclick="/news/general">Home</button>
   <button class="tablinks" onclick="">General</button>
   <button class="tablinks" onclick="">Business</button>
   <button class="tablinks" onclick="">Entertainment</button>
@@ -30,12 +41,17 @@
   <button class="tablinks" onclick="">Science</button>
   <button class="tablinks" onclick="">Sports</button>
   <button class="tablinks" onclick="">Technology</button>
-</div>
+</div> -->
+
+
+<!--<h2>My Dashboard</h2>-->
+
+<!--<p style = "float:right"> Welcome <%= user.name %></p>-->
 
 
 
-  <!--<a href="/users/logout" style = "float:right" >Logout</a>-->
 
+<!--<a href="/users/logout" style = "float:right" >Logout</a>-->
 
 <!--<form method="GET" id="refresh" action="/dashboard">
   <a href="/"> Refresh </a>
@@ -46,9 +62,10 @@
     <h3><a href="/users/update_user?id=<%= id %>"  class="text-decoration-none" style="float: right;"> Settings</a></h3>
 </div> -->
 
+
 <div class="news-container ">
     <div class="news ">
-        <% articles.forEach(function(article,index){ %>
+        <% articles.forEach(function(article, index){ %>
           <% if ((typeof article.url=='object') || (typeof article.title=='object') || (typeof article.urlToImage=='object') || (typeof article.content=='object')){ %>
             <% } else{ %>
               <a href="<%- article.url %>" target="_blank" class="news-box Hover-effect">
@@ -60,7 +77,7 @@
                   <%- article.content.replace(/<[^>]+>/g, '') %>
                 </p>
                 <br>
-                <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:5603AD;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
+                <p style="margin-bottom: 0px; position: absolute; right: 0; bottom: 0; font-family: ui-monospace;">Updated: <span style="color:red;" ><%- new Date(article.publishedAt.slice(0,10)).toDateString() %>    <%- moment.utc(article.publishedAt).local().format('hh : mm A') %> </span></p>
               </a>
             <% } %>
           <% }) %>
@@ -87,6 +104,11 @@
       </ul>
     </nav>
     </div>
+
+    
+
+    
+
 
 <script src="moment.js"></script>
 <script src="moment-timezone-with-data.js"></script>
