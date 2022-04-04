@@ -11,9 +11,27 @@ router.get('/', async(req,res) => {
     res.redirect('/1')
 })
 
+// router.get('/',async(req,res)=>{
+//     var api = 'http://newsapi.org/v2/top-headlines?'
+//     var country = 'country=us'
+//     var category = '&General'
+//     var apiKey = '&apiKey=36f3e29b704f41339af8439dc1228334' 
+//     try {
+//         var url = api + country + category + apiKey
+//         //'http://newsapi.org/v2/top-headlines?country=in&category=general' + '&apiKey=36f3e29b704f41339af8439dc1228334';
+//         const news_get =await axios.get(url)
+//         res.status(200).render('welcome',{articles:news_get.data.articles})
+//     } catch (error) {
+//         if(error.response){
+//             console.log(error)
+//         }
+//     }
+// })
+
 router.get('/:page',async(req,res)=>{
     const art = []
     try {
+        var url = 'http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
         const news_get =await axios.get(url)
         for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
