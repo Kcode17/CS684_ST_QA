@@ -8,14 +8,14 @@ const app = require('../app');
 chai.use(chaiHttp); 
 
  describe('/First Test Collection', () =>{
-//     it('test default API welcome route...', (done) =>{
-//         chai.request(app)
-//         .get('/')
-//         .end((err,res) => {
-//             res.should.have.status(200);
-//             done();
-//         });
-//     });
+    it('test default API welcome route...', (done) =>{
+        chai.request(app)
+        .get('/')
+        .end((err,res) => {
+            res.should.have.status(200);
+            done();
+        });
+    });
 
 
     it('GET Landing page of application', (done) => {
@@ -142,5 +142,155 @@ chai.use(chaiHttp);
         done();
     });
     });
+
+})
+
+
+describe('/Second Test Collection', () =>{
+    it('GET News as per preference for valid user /news/users/:id', (done) => {  
+        chai.request(app)
+        .get('/news/users/623891984e1c9df50b7d34ad') 
+        .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.articles.should.have.lengthOf.below(251);
+        res.body.articles.should.be.not.empty;
+        done();
+        }).timeout(10000);
+   })
+
+
+   it('GET News not fetched for invalid user /news/users/:id', (done) => {  
+    chai.request(app)
+    .get('/news/users/623891984e1c9df50b6d34ad') 
+    .end((err, res) => {
+    res.should.have.status(401);
+    //res.should.be.a('"message": "User is not recognized (unauthorized)"');
+    res.body.should.have.property('message').eql('User is not recognized (unauthorized)');
+    done();
+    }).timeout(10000);
+})
+
+
+   it('GET News for general', (done) => {   
+        chai.request(app)
+        .get('/news/category/general')  
+        .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.articles.should.have.length(100);
+        res.body.articles.should.be.not.empty;
+        done();
+        }).timeout(10000);
+    })
+    it('GET News for health', (done) => {
+        chai.request(app)
+        .get('/news/category/health')  
+        .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.articles.should.have.length(100);
+        res.body.articles.should.be.not.empty;
+        done();
+        }).timeout(10000);
+    })
+
+    it('GET News for entertainment', (done) => {  
+            chai.request(app)
+            .get('/news/category/entertainment')  
+            .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.articles.should.have.length(100);
+            res.body.articles.should.be.not.empty;
+            done();
+        }).timeout(10000);
+    })
+
+    it('GET News for science', (done) => {   
+            chai.request(app)
+            .get('/news/category/science') 
+            .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.articles.should.have.length(100);
+            res.body.articles.should.be.not.empty;
+            done();
+        }).timeout(10000);
+    })
+    it('GET News for technology', (done) => { 
+            chai.request(app)
+            .get('/news/category/technology')  
+            .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.articles.should.have.length(100);
+            res.body.articles.should.be.not.empty;
+            done();
+        }).timeout(10000);
+    })
+    it('GET News for sports', (done) => { 
+            chai.request(app)
+            .get('/news/category/sports')  
+            .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.articles.should.have.length(100);
+            res.body.articles.should.be.not.empty;
+            done();
+        }).timeout(10000);
+    })
+
+    it('GET News for science', (done) => { 
+            chai.request(app)
+            .get('/news/category/science')  
+            .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.articles.should.have.length(100);
+            res.body.articles.should.be.not.empty;
+            done();
+        }).timeout(10000);
+    }) 
+
+    it('GET News for dashboard - home', (done) => { 
+            chai.request(app)
+            .get('/dashboard/home/1')  
+            .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            done();
+        }).timeout(10000);
+    })
+
+//     it('GET News for dashboard - health', (done) => { 
+//         chai.request(app)
+//         .get('/dashboard/health/1')  
+//         .end((err, res) => {
+//         res.should.have.status(200);
+//         res.body.should.be.a('object');
+//         done();
+//     }).timeout(10000);
+// })
+
+//     it('GET News for dashboard - health', (done) => { 
+//         chai.request(app)
+//         .get('/dashboard/health/1')  
+//         .end((err, res) => {
+//         res.should.have.status(200);
+//         res.body.should.be.a('object');
+//         done();
+//     }).timeout(10000);
+// })
+
+//     it('GET News for dashboard - science', (done) => { 
+//             chai.request(app)
+//             .get('/dashboard/science/1')  
+//             .end((err, res) => {
+//             res.should.have.status(200);
+//             res.body.should.be.a('object');
+//             done();
+//         }).timeout(10000);
+//     })
 
 })
