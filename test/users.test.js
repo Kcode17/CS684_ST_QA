@@ -118,7 +118,7 @@ chai.use(chaiHttp);
    it('UPDATE user details in DB', (done) => {
     let User = {
         _id: "623891984e1c9df50b7d34ad", //add valid ID here
-        general: "no"
+        sport: "no"
     }
    
    chai.request(app)
@@ -143,4 +143,85 @@ chai.use(chaiHttp);
     });
     });
 
+    it('GET Sport Content when clicking on Sport Tab - Dashboard', (done) => {
+        let User = {
+            _id: "623891984e1c9df50b7d34ad", //add valid ID here
+        }    
+        chai.request(app)
+        .get('/dashboard/sports') 
+        .send(User)
+        .end((err, res) => {
+            res.should.have.status(200);
+            done();
+      });
+    });
+
+    it('GET Business Content when clicking on Business Tab - Dashboard', (done) => {
+        let User = {
+            _id: "623891984e1c9df50b7d34ad", //add valid ID here
+        }    
+        chai.request(app)
+        .get('/dashboard/business') 
+        .send(User)
+        .end((err, res) => {
+            res.should.have.status(200);
+            done();
+      });
+    });
+
+    it('GET Entertainment Content when clicking on Entertainment Tab - Dashboard', (done) => {
+        let User = {
+            _id: "623891984e1c9df50b7d34ad", //add valid ID here
+        }    
+        chai.request(app)
+        .get('/dashboard/entertainment') 
+        .send(User)
+        .end((err, res) => {
+            res.should.have.status(200);
+            done();
+      });
+    });
+
+
+    it('GET Health Content when clicking on Health Tab - Dashboard', (done) => {
+        let User = {
+            _id: "623891984e1c9df50b7d34ad", //add valid ID here
+        }    
+        chai.request(app)
+        .get('/dashboard/health') 
+        .send(User)
+        .end((err, res) => {
+            res.should.have.status(200);
+            done();
+      });
+    });
+
+    it('GET Science Content when clicking on Science Tab - Dashboard', (done) => {
+        let User = {
+            _id: "623891984e1c9df50b7d34ad", //add valid ID here
+        }    
+        chai.request(app)
+        .get('/dashboard/science') 
+        .send(User)
+        .end((err, res) => {
+            res.should.have.status(200);
+            done();
+      });
+    });
+
+    it('GET Technology Content when clicking on Technology Tab - Dashboard', (done) => {
+        let User = {
+            _id: "623891984e1c9df50b7d34ad", //add valid ID here
+        }    
+        chai.request(app)
+        .get('/dashboard/technology') 
+        .send(User)
+        .end((err, res) => {
+            res.should.have.status(200);
+            done();
+      });
+    });
 })
+
+
+
