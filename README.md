@@ -16,8 +16,18 @@
 ### [Version History](https://github.com/Kcode17/CS684_ST_QA/blob/main/TestingDocs/Test%20Cases%20Report.Version%20History.md)
 
 ### 3. Sprint 2 due / Sprint 3 planning- Mar 22 2022
+
+
+
+
 ### 4. Sprint 3 due / Sprint 4 planning- Apr 12 2022
+
+### [Integration Test Cases](https://github.com/Kcode17/CS684_ST_QA/blob/main/IT_Garry.xlsx)
+
 ### 5. Sprint 4 (final project)- May 10 2022
+
+
+## [References](https://www.youtube.com/watch?v=u8pl-Omd13g)
 ## Team Transformers
 ### 1. [Zahabiya Rangwala](https://www.linkedin.com/in/zahabiyar/)
 ### 2. [Krishna Teja](https://www.linkedin.com/in/krishna-teja-oguri/)
