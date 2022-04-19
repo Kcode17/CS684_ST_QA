@@ -44,23 +44,7 @@ passport.authenticate('local',{
 })
 
 
-// router.get("/update/:id", async (req, res)=>{
-//     User.findById(req.params.id, (err,doc) => {
-//       if (!err) {
-//         res.render("/settings", {
-//           viewTitle: "Settings",
-//           user: doc 
-//         })
-//       }
-//     });
-//     try{
-//       const user = await User.findById(req.params.id)
-//       res.json(user)
-//     }catch(err){
-//       res.send('Error' + err)
-//     }
-//   })
-  
+ 
 router.get('/update_user', (req, res) => {
     res.render("update_user", { id: req.user._id,
                               general: req.user.general,
@@ -72,72 +56,6 @@ router.get('/update_user', (req, res) => {
                               technology: req.user.technology,
                             });
   });  
-
-//NOT REQUIRED
-//   router.get("update_user/:id", async (req, res)=>{
-//     User.findById(req.params.id, (err,doc) => {
-//       if (!err) {
-//          res.render("update_user", {
-//            viewTitle: "Update User",
-//            user: doc 
-//         // res.render("/update_user", { id: req.user._id,
-//         //   general: req.user.general
-//         })
-//       }
-//     });
-//     try{
-//       const user = await User.findById(req.params.id)
-//       res.json(user)
-//     }catch(err){
-//       res.send('Error' + err)
-//     }
-//   })
-
-
-// router.post('/api/Users/:id', (req, res) => {
-//     // Reading isbn from the URL
-//     const id = req.params.id;
-//     const generalupdate = req.body.general;
-//     // const generalupdate = req.body.general;
-//     // const businessupdate = req.body.business;
-//     // const entertainmentupdate = req.body.entertainment;
-//     // const healthupdate = req.body.health;
-//     // const scienceupdate = req.body.science;
-//     // const technologyupdate = req.body.technology;
-  
-  
-//     // Remove item from the books array
-//     for (let i = 0; i <User.length; i++) {
-//         let user = User[i]
-//         if (user.id === id) {
-//             user.general = generalupdate;
-//         }
-//     }
-  
-//     res.send('UPDATED');
-//   });
-  
-
-// router.post('/update/:id', (req, res) => {
-//     // Reading isbn from the URL
-//     const id = req.params.id;
-//     const generalupdate = req.body.general;
-//     // const generalupdate = req.body.general;
-//     // const businessupdate = req.body.business;
-//     // const entertainmentupdate = req.body.entertainment;
-//     // const healthupdate = req.body.health;
-//     // const scienceupdate = req.body.science;
-//     // const technologyupdate = req.body.technology;
-
-//     // Remove item from the books array
-//     for (let i = 0; i <User.length; i++) {
-//         let user = User[i]
-//         if (user.id === id) {
-//             user.general = generalupdate;
-//         }
-//     }
-//     res.send('UPDATED');
-//   });
 
   //register post handle
   router.post('/register',(req,res)=>{
