@@ -66,10 +66,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-
-        
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />  
     </head>
     <body>
         <div class="topnav">
@@ -79,18 +76,10 @@
                 <a class="active" href="/users/update_user?id=<%= id %>">Settings</a>
                 <a href="/users/logout">Log out</a>
             </div>
-            
             </div>
         </div>
-
-
-
-        <div class="container-settings">
-            
+        <div class="container-settings">     
             <div class="content-settings">
-
-        
-            
                 <form method="PUT" id="update_user" action="/dashboard/home/1">
                     <div class="form-group">
                         <h3> <label for="name" class="text-dark">Category Settings</label> </h3>
@@ -183,44 +172,33 @@
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-
         <script>
             function validate_radio() 
             {
                 if((document.getElementById('radio-1').checked) || (document.getElementById('radio-3').checked) ||(document.getElementById('radio-5').checked) || (document.getElementById('radio-7').checked) || (document.getElementById('radio-9').checked) || (document.getElementById('radio-11').checked) || (document.getElementById('radio-13').checked))
-                {
-                    
+                {  
                     return true;
                 }
                 else
-                {
-                    
+                { 
                     return false;
                 }
             } 
-            
-            
                 $("#update_user").submit(function(event)
                 {
                     if(validate_radio() == true)
                     {
-                        
                         event.preventDefault();
-            
                         var unindexed_array = $(this).serializeArray();
                         var data = {}
-            
                         $.map(unindexed_array, function(n, i){
                         data[n['name']] = n['value']
                         })
-            
-            
                         var request = {
                             "url" : `http://localhost:3000/users/api/users/${data.id}`,
                             "method" : "PUT",
                             "data" : data
                         } 
-            
                         $.ajax(request).done(function(response){
                         alert("Data Updated Successfully!");
                         })
@@ -230,10 +208,7 @@
                         alert('Atleast one category should be selected');
                     }
                 })
-            
-    
         </script>
-
     </body>
 </html>
   
