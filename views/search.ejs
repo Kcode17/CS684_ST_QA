@@ -33,13 +33,19 @@
   <a href="/dashboard/health/1" class="w3-bar-item w3-button">Health</a>
 </div>
 
-<form class="form-inline my-2 my-lg-0" action="/search/1" method="POST">
+<form class="form-inline my-2 my-lg-0" action="/search/1" id="keysearch" method="POST">
   <div style="display: inline;">
-  <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" style="width: 522px;"
-      aria-label="Search"> 
+  <input class="form-control mr-sm-2" 
+          name="search" 
+          id = "search"
+          type="search" 
+          placeholder="Search" 
+          style="width: 522px;"
+          aria-label="Search"> 
       <button class="btn btn-outline-danger my-2 my-sm-0" type="Submit">Search</button>
     </div> 
-</form> 
+</form>
+<!-- <input  name="id" value="<%= id %>">  -->
 <div class="news-container ">
   <div class="news ">
       <% articles.forEach(function(article,index){ %>
@@ -50,9 +56,9 @@
               <h4>
                 <%- article.title %>
               </h4>
-              <p>
+              <!-- <p>
                 <%- article.description %>
-              </p>
+              </p> -->
               
               <h5>
                 <%- article.source.name %>
@@ -99,35 +105,34 @@
 </div> -->
 
 <div class="pagination">
-<% if (pages > 0) { %>
-  
-      <% if (current === 1) { %>
-          <a>First</a>
-      <% } else { %>
-          <a href="/dashboard/home/1">First</a>
-      <% } %>
-      <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-      <% if (i !== 1) { %>
-          <a>...</a>
-      <% } %>
-      <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-          <% if (i === current) { %>
-              <a><%= i %></a>
-          <% } else { %>
-              <a href="/dashboard/home/<%= i %>"><%= i %></a>
-          <% } %>
-          <% if (i === Number(current) + 4 && i < pages) { %>
-              <a>...</a>
-          <% } %>
-      <% } %>
-      <% if (current === pages) { %>
-          <a>Last</a>
-      <% } else { %>
-          <a href="/dashboard/home/<%= pages %>">Last</a>
-      <% } %>
-  
-<% } %>
-</div>
+  <% if (pages > 0) { %>
+        <% if (current === 1) { %>
+            <a>First</a>
+        <% } else { %>
+            <a href="/search/1">First</a>
+        <% } %>
+        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+        <% if (i !== 1) { %>
+            <a>...</a>
+        <% } %>
+        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if (i === current) { %>
+                <a><%= i %></a>
+            <% } else { %>
+                <a href="/search/<%= i %>"><%= i %></a>
+            <% } %>
+            <% if (i === Number(current) + 4 && i < pages) { %>
+                <a>...</a>
+            <% } %>
+        <% } %>
+        <% if (current === pages) { %>
+            <a>Last</a>
+        <% } else { %>
+            <a href="/search/<%= pages %>">Last</a>
+        <% } %>
+    
+  <% } %>
+  </div>
 
   <!-- <div class="pagination">
     <nav aria-label="...">
@@ -160,3 +165,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<script> 
+  $("#keysearch").submit(function(event){
+   loadAjax();
+   event.preventDefault()
+})
+</script>

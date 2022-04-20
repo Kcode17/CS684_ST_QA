@@ -7,6 +7,12 @@ const User = require("../models/user");
 
 const {ensureAuthenticated} = require('../config/auth')
 
+// // load routers
+
+
+const services = require('../services/render');
+const controller = require('../controller/controller');
+
 router.get('/', async(req,res) => {
     res.redirect('/1')
 })
@@ -29,9 +35,10 @@ router.get('/', async(req,res) => {
 // })
 
 router.get('/:page',async(req,res)=>{
+    
     const art = []
     try {
-        var url = 'http://newsapi.org/v2/top-headlines?category=general&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        var url = 'http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
         const news_get =await axios.get(url)
         for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
@@ -95,14 +102,14 @@ router.get('/dashboard/home',ensureAuthenticated, async(req,res)=>{ // changed t
 const art = []
     try {
             if(req.user.general === 'yes'){
-                var url1 = 'http://newsapi.org/v2/top-headlines?category=general&country=us&apiKey=f75068836d0a45159177374141456b19';
+                var url1 = 'http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19';
                 const news_get =await axios.get(url1)
                 for (let i = 0; i < 20; i++) {
                     art.push(news_get.data.articles[i])
                   } 
             }   
             if(req.user.business == 'yes'){
-                var url2 = 'http://newsapi.org/v2/top-headlines?category=business&country=us&apiKey=f75068836d0a45159177374141456b19';
+                var url2 = 'http://newsapi.org/v2/top-headlines?category=business&apiKey=f75068836d0a45159177374141456b19';
                 const news_bus =await axios.get(url2)
                 for (let i = 0; i < 20; i++) {
                     art.push(news_bus.data.articles[i])
@@ -110,35 +117,35 @@ const art = []
                 
             }   
             if(req.user.entertainment == 'yes'){
-                var url3 = 'http://newsapi.org/v2/top-headlines?category=entertainment&country=us&apiKey=f75068836d0a45159177374141456b19';
+                var url3 = 'http://newsapi.org/v2/top-headlines?category=entertainment&apiKey=f75068836d0a45159177374141456b19';
                 const news_ent =await axios.get(url3)
                 for (let i = 0; i < 20; i++) {
                     art.push(news_ent.data.articles[i])
                   } 
             }   
             if(req.user.health == 'yes'){
-                var url4 = 'http://newsapi.org/v2/top-headlines?category=health&country=us&apiKey=f75068836d0a45159177374141456b19';
+                var url4 = 'http://newsapi.org/v2/top-headlines?category=health&apiKey=f75068836d0a45159177374141456b19';
                 const news_hlt =await axios.get(url4)
                 for (let i = 0; i < 20; i++) {
                     art.push(news_hlt.data.articles[i])
                 }
             }   
             if(req.user.science == 'yes'){
-                var url5 = 'http://newsapi.org/v2/top-headlines?category=science&country=us&apiKey=f75068836d0a45159177374141456b19';
+                var url5 = 'http://newsapi.org/v2/top-headlines?category=science&apiKey=f75068836d0a45159177374141456b19';
                 const news_sci =await axios.get(url5)
                 for (let i = 0; i < 20; i++) {
                     art.push(news_sci.data.articles[i])
                 } 
             }   
             if(req.user.sport == 'yes'){
-                var url6 = 'http://newsapi.org/v2/top-headlines?category=sports&country=us&apiKey=f75068836d0a45159177374141456b19';
+                var url6 = 'http://newsapi.org/v2/top-headlines?category=sports&apiKey=f75068836d0a45159177374141456b19';
                 const news_sport =await axios.get(url6)
                 for (let i = 0; i < 20; i++) {
                     art.push(news_sport.data.articles[i])
                 }   
             }  
             if(req.user.technology == 'yes'){
-                var url7 = 'http://newsapi.org/v2/top-headlines?category=technology&country=us&apiKey=f75068836d0a45159177374141456b19';
+                var url7 = 'http://newsapi.org/v2/top-headlines?category=technology&apiKey=f75068836d0a45159177374141456b19';
                 const news_tech =await axios.get(url7)
                 for (let i = 0; i < 20; i++) {
                     art.push(news_tech.data.articles[i])
@@ -169,52 +176,56 @@ const art = []
 /// ALTERNATE to critical code
 router.get('/dashboard/home/:page', ensureAuthenticated, async(req,res)=>{
     const art = []
+    let user = await User.findById(req.user._id);
+    user = await User.updateOne({_id:req.user._id},{$set: req.body});
+    //var search = req.body.search | ''
+    const id = req.user._id
     try {
         //Check if category is available and begin consolidating into one data object
         if(req.user.general === 'yes'){
-            var url1 = 'http://newsapi.org/v2/top-headlines?category=general&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+            var url1 = 'http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
             const news_get =await axios.get(url1)
             for (let i = 0; i < 100; i++) {
                 art.push(news_get.data.articles[i])
               } 
         }   
         if(req.user.business == 'yes'){
-            var url2 = 'http://newsapi.org/v2/top-headlines?category=business&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+            var url2 = 'http://newsapi.org/v2/top-headlines?category=business&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
             const news_bus =await axios.get(url2)
             for (let i = 0; i < 100; i++) {
                 art.push(news_bus.data.articles[i])
               } 
         }   
         if(req.user.entertainment == 'yes'){
-            var url3 = 'http://newsapi.org/v2/top-headlines?category=entertainment&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+            var url3 = 'http://newsapi.org/v2/top-headlines?category=entertainment&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
             const news_ent =await axios.get(url3)
             for (let i = 0; i < 100; i++) {
                 art.push(news_ent.data.articles[i])
               } 
         }   
         if(req.user.health == 'yes'){
-            var url4 = 'http://newsapi.org/v2/top-headlines?category=health&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+            var url4 = 'http://newsapi.org/v2/top-headlines?category=health&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
             const news_hlt =await axios.get(url4)
             for (let i = 0; i < 100; i++) {
                 art.push(news_hlt.data.articles[i])
             }
         }   
         if(req.user.science == 'yes'){
-            var url5 = 'http://newsapi.org/v2/top-headlines?category=science&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+            var url5 = 'http://newsapi.org/v2/top-headlines?category=science&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
             const news_sci =await axios.get(url5)
             for (let i = 0; i < 100; i++) {
                 art.push(news_sci.data.articles[i])
             } 
         }   
         if(req.user.sport == 'yes'){
-            var url6 = 'http://newsapi.org/v2/top-headlines?category=sports&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+            var url6 = 'http://newsapi.org/v2/top-headlines?category=sports&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
             const news_sport =await axios.get(url6)
             for (let i = 0; i < 100; i++) {
                 art.push(news_sport.data.articles[i])
             }   
         }  
         if(req.user.technology == 'yes'){
-            var url7 = 'http://newsapi.org/v2/top-headlines?category=technology&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+            var url7 = 'http://newsapi.org/v2/top-headlines?category=technology&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
             const news_tech =await axios.get(url7)
             for (let i = 0; i < 100; i++) {
                 art.push(news_tech.data.articles[i])
@@ -280,7 +291,7 @@ router.get('/dashboard/home/:page', ensureAuthenticated, async(req,res)=>{
 router.get('/dashboard/general/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
     try {
-        var url = 'http://newsapi.org/v2/top-headlines?category=general&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        var url = 'http://newsapi.org/v2/top-headlines?category=general&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
         const news_get =await axios.get(url)
         for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
@@ -322,7 +333,7 @@ router.get('/dashboard/general/:page',ensureAuthenticated, async(req,res)=>{
 router.get('/dashboard/health/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
     try {
-        var url = 'http://newsapi.org/v2/top-headlines?category=health&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        var url = 'http://newsapi.org/v2/top-headlines?category=health&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
         const news_get =await axios.get(url)
         for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
@@ -364,7 +375,7 @@ router.get('/dashboard/health/:page',ensureAuthenticated, async(req,res)=>{
 router.get('/dashboard/entertainment/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
     try {
-        var url = 'http://newsapi.org/v2/top-headlines?category=entertainment&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        var url = 'http://newsapi.org/v2/top-headlines?category=entertainment&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
         const news_get =await axios.get(url)
         for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
@@ -406,7 +417,7 @@ router.get('/dashboard/entertainment/:page',ensureAuthenticated, async(req,res)=
 router.get('/dashboard/science/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
     try {
-        var url = 'http://newsapi.org/v2/top-headlines?category=science&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        var url = 'http://newsapi.org/v2/top-headlines?category=science&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
         const news_get =await axios.get(url)
         for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
@@ -448,7 +459,7 @@ router.get('/dashboard/science/:page',ensureAuthenticated, async(req,res)=>{
 router.get('/dashboard/business/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
     try {
-        var url = 'http://newsapi.org/v2/top-headlines?category=business&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        var url = 'http://newsapi.org/v2/top-headlines?category=business&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
         const news_get =await axios.get(url)
         for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
@@ -490,7 +501,7 @@ router.get('/dashboard/business/:page',ensureAuthenticated, async(req,res)=>{
 router.get('/dashboard/sports/:page',ensureAuthenticated, async(req,res)=>{
     const art = []
     try {
-        var url = 'http://newsapi.org/v2/top-headlines?category=sports&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        var url = 'http://newsapi.org/v2/top-headlines?category=sports&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
         const news_get =await axios.get(url)
         for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
@@ -532,7 +543,7 @@ router.get('/dashboard/sports/:page',ensureAuthenticated, async(req,res)=>{
     router.get('/dashboard/technology/:page',ensureAuthenticated, async(req,res)=>{
         const art = []
     try {
-        var url = 'http://newsapi.org/v2/top-headlines?category=technology&country=us&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
+        var url = 'http://newsapi.org/v2/top-headlines?category=technology&apiKey=f75068836d0a45159177374141456b19&pageSize=100';
         const news_get =await axios.get(url)
         for (let i = 0; i < 100; i++) {
             art.push(news_get.data.articles[i])
@@ -819,6 +830,374 @@ router.get("/news/users/:id", async (req, res) => {
     }
   });
 
+  router.put('/api/Users/:id', controller.update);
+  
+  router.post('/search/1',ensureAuthenticated, async (req,res)=>{
+    const art = []
+    const id = req.user._id
+    //req.user.search = search
+    var search = req.body.search
+    console.log("search req body " + search)
+    if(search == 'undefined'){
+        var search = req.user.search
+        console.log("search user search " + search)
+    }else{
+        let user = await User.findById(req.user._id);
+        user = await User.updateOne({_id:req.user._id},{$set: req.body});
+    }
+
+    console.log("search" + search)
+    console.log("search" + id) 
+    try {
+        if(search.length > 0){
+            var url = `http://newsapi.org/v2/everything?q=${search}&apiKey=f75068836d0a45159177374141456b19&pageSize=100`
+            const news_get =await axios.get(url)
+            if((news_get.data.articles.length) != 0){
+                console.log(news_get.data.articles.length)
+                for (let i = 0; i < 100; i++) {
+                  art.push(news_get.data.articles[i])
+                 }
+          const arr = art
+          const sortByDate = arr => {
+          const sorter = (a, b) => {
+              return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+          }
+          arr.sort(sorter);
+      };
+          sortByDate(arr);
+          const reach = {}
+          reach.reach = arr.slice(0,250)
+        
+        const page = req.params.page || 1
+        const limit = 20
+        const countt = reach.reach.length
+        const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+        const endIndex= ((page * limit))
+
+        const results = {}
+        results.results = reach.reach.slice(startIndex, endIndex)  //art
+        res.status(200).render('search', {
+            articles: results.results,
+            pages: Math.ceil(countt / limit),
+            current: page,
+            user: req.user,
+            id: req.user._id,
+            search: req.user.search
+            }) 
+        
+        }else{
+            res.render('noarticles', {
+                user: req.user,
+                id: req.user._id,
+                search: req.body.search
+            })
+        }
+        
+         } else {
+             res.redirect('/dashboard/home/1')
+    }
+
+  }catch (error) {
+    if(error.response){
+        console.log(error)
+        }
+    }
+})
+
+router.get("/search/searchitems", async (req, res) => {
+    const art = []
+    var search = req.query.search
+    console.log(search)
+    var userId = req.params.id;
+    try {
+        if(search.length > 0){
+            var url = `http://newsapi.org/v2/everything?q=${search}&apiKey=f75068836d0a45159177374141456b19&pageSize=100`
+                const news_get =await axios.get(url)
+                if((news_get.data.articles.length) != 0){
+                    for (let i = 0; i < 100; i++) {
+                        art.push(news_get.data.articles[i])
+                }
+                const arr = art
+                const sortByDate = arr => {
+                const sorter = (a, b) => {
+                    return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+                }
+                arr.sort(sorter);
+            };
+        sortByDate(arr);
+        const articles = {}
+        articles.articles = arr.slice(0,250)  
+        //const articles = {}      
+        //articles.articles = art
+              
+      res.status(200).json(articles)
+        }else{
+            res.status(401).json({ message: "There are no articles matching the search keyword" });
+            }     
+        }
+    }
+    catch (err){
+        res.status(500).json({ message: "An error occured. Please retry" });
+    }
+  });
+
+router.get('/search/:page',ensureAuthenticated, async (req,res)=>{
+    const art = []
+    const id = req.user._id
+    //req.user.search = search
+    var search = req.user.search
+    console.log("search" + search)
+    console.log("search" + id) 
+    try {
+        if(search.length > 0){
+            var url = `http://newsapi.org/v2/everything?q=${search}&apiKey=f75068836d0a45159177374141456b19&pageSize=100`
+                const news_get =await axios.get(url)
+                    for (let i = 0; i < 100; i++) {
+                        art.push(news_get.data.articles[i])
+                }
+                const arr = art
+                const sortByDate = arr => {
+                const sorter = (a, b) => {
+                    return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+                }
+                arr.sort(sorter);
+            };
+                sortByDate(arr);
+                const reach = {}
+                reach.reach = arr.slice(0,250)
+            
+                const page = req.params.page || 1
+                const limit = 20
+                const countt = reach.reach.length
+                const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+                const endIndex= ((page * limit))
+
+            const results = {}
+            results.results = reach.reach.slice(startIndex, endIndex)  //art
+            res.status(200).render('search', {
+                articles: results.results,
+                pages: Math.ceil(countt / limit),
+                current: page,
+                user: req.user,
+                id: req.user._id,
+                search: req.user.search
+                }) 
+         } else {
+             res.redirect('/dashboard/home/1')
+    }
+  }catch (error) {
+    if(error.response){
+        console.log(error)
+        }
+    }
+})
+
+// router.get('/search/2',ensureAuthenticated, async (req,res)=>{
+//     const art = []
+//     const id = req.user._id
+//     var search = req.user.search
+//     try {
+//         if(search.length > 0){
+//             console.log('first one +ve')
+//             var url = `http://newsapi.org/v2/everything?q=${search}&apiKey=f75068836d0a45159177374141456b19&pageSize=100`
+// 	    const news_get =await axios.get(url)
+//         for (let i = 0; i < 100; i++) {
+//             art.push(news_get.data.articles[i])
+//           }
+//           const arr = art
+//           const sortByDate = arr => {
+//           const sorter = (a, b) => {
+//               return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+//           }
+//           arr.sort(sorter);
+//       };
+//           sortByDate(arr);
+//           const reach = {}
+//           reach.reach = arr.slice(0,250)
+        
+//         const page = 2
+//         const limit = 20
+//         const countt = reach.reach.length
+//         const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+//         const endIndex= ((page * limit))
+
+//         const results = {}
+//         results.results = reach.reach.slice(startIndex, endIndex)  //art
+//         res.status(200).render('search', {
+//             articles: results.results,
+//             pages: Math.ceil(countt / limit),
+//             current: page,
+//             user: req.user,
+//             id: req.user._id,
+//             search: req.body.search
+//             }) 
+        
+//          } else {
+//             console.log('second one -ve')
+//              res.redirect('/dashboard/home/1')
+//     }
+//   }catch (error) {
+//     if(error.response){
+//         console.log(error)
+//         }
+//     }
+// })
+
+// router.get('/search/3',ensureAuthenticated, async (req,res)=>{
+//     const art = []
+//     const id = req.user._id
+//     var search = req.user.search
+//     //req.user.search = search
+//     try {
+//         if(search.length > 0){
+//             console.log('first one +ve')
+//             var url = `http://newsapi.org/v2/everything?q=${search}&apiKey=f75068836d0a45159177374141456b19&pageSize=100`
+// 	    const news_get =await axios.get(url)
+//         for (let i = 0; i < 100; i++) {
+//             art.push(news_get.data.articles[i])
+//           }
+//           const arr = art
+//           const sortByDate = arr => {
+//           const sorter = (a, b) => {
+//               return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+//           }
+//           arr.sort(sorter);
+//       };
+//           sortByDate(arr);
+//           const reach = {}
+//           reach.reach = arr.slice(0,250)
+        
+//         const page = 3
+//         const limit = 20
+//         const countt = reach.reach.length
+//         const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+//         const endIndex= ((page * limit))
+
+//         const results = {}
+//         results.results = reach.reach.slice(startIndex, endIndex)  //art
+//         res.status(200).render('search', {
+//             articles: results.results,
+//             pages: Math.ceil(countt / limit),
+//             current: page,
+//             user: req.user,
+//             id: req.user._id,
+//             search: req.body.search
+//             }) 
+        
+//          } else {
+//             console.log('second one -ve')
+//              res.redirect('/dashboard/home/1')
+//     }
+//   }catch (error) {
+//     if(error.response){
+//         console.log(error)
+//         }
+//     }
+// })
+
+// router.get('/search/4',ensureAuthenticated, async (req,res)=>{
+//     const art = []
+//     const id = req.user._id
+//     var search = req.user.search
+//     //req.user.search = search
+//     try {
+//         if(search.length > 0){
+//             console.log('first one +ve')
+//             var url = `http://newsapi.org/v2/everything?q=${search}&apiKey=f75068836d0a45159177374141456b19&pageSize=100`
+// 	    const news_get =await axios.get(url)
+//         for (let i = 0; i < 100; i++) {
+//             art.push(news_get.data.articles[i])
+//           }
+//           const arr = art
+//           const sortByDate = arr => {
+//           const sorter = (a, b) => {
+//               return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+//           }
+//           arr.sort(sorter);
+//       };
+//           sortByDate(arr);
+//           const reach = {}
+//           reach.reach = arr.slice(0,250)
+        
+//         const page = 4
+//         const limit = 20
+//         const countt = reach.reach.length
+//         const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+//         const endIndex= ((page * limit))
+
+//         const results = {}
+//         results.results = reach.reach.slice(startIndex, endIndex)  //art
+//         res.status(200).render('search', {
+//             articles: results.results,
+//             pages: Math.ceil(countt / limit),
+//             current: page,
+//             user: req.user,
+//             id: req.user._id,
+//             search: req.body.search
+//             }) 
+        
+//          } else {
+//             console.log('second one -ve')
+//              res.redirect('/dashboard/home/1')
+//     }
+//   }catch (error) {
+//     if(error.response){
+//         console.log(error)
+//         }
+//     }
+// })
+
+// router.post('/search/5',ensureAuthenticated, async (req,res)=>{
+//     const art = []
+//     const id = req.user._id
+//     var search = req.user.search
+//     //req.user.search = search
+//     try {
+//         if(search.length > 0){
+//             console.log('first one +ve')
+//             var url = `http://newsapi.org/v2/everything?q=${search}&apiKey=f75068836d0a45159177374141456b19&pageSize=100`
+// 	    const news_get =await axios.get(url)
+//         for (let i = 0; i < 100; i++) {
+//             art.push(news_get.data.articles[i])
+//           }
+//           const arr = art
+//           const sortByDate = arr => {
+//           const sorter = (a, b) => {
+//               return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+//           }
+//           arr.sort(sorter);
+//       };
+//           sortByDate(arr);
+//           const reach = {}
+//           reach.reach = arr.slice(0,250)
+        
+//         const page = 5
+//         const limit = 20
+//         const countt = reach.reach.length
+//         const startIndex =  ((limit * page) - limit) //(page - 1) * limit
+//         const endIndex= ((page * limit))
+
+//         const results = {}
+//         results.results = reach.reach.slice(startIndex, endIndex)  //art
+//         res.status(200).render('search', {
+//             articles: results.results,
+//             pages: Math.ceil(countt / limit),
+//             current: page,
+//             user: req.user,
+//             id: req.user._id,
+//             search: req.body.search
+//             }) 
+        
+//          } else {
+//             console.log('second one -ve')
+//              res.redirect('/dashboard/home/1')
+//     }
+//   }catch (error) {
+//     if(error.response){
+//         console.log(error)
+//         }
+//     }
+// })
 
 
   // INDIVIDUAL CATEGORY API
