@@ -294,3 +294,42 @@ describe('/Second Test Collection', () =>{
 //     })
 
 })
+
+
+
+describe('/Third Test Collection', () =>{
+    it('GET News as per search keyword', (done) => {  
+        chai.request(app)
+        .get('/search/searchitems?search=football') 
+        .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.articles.should.have.lengthOf.below(251);
+        res.body.articles.should.be.not.empty;
+        done();
+        }).timeout(10000);
+   })
+
+   it('GET News as per search keyword with paranthesis', (done) => {  
+    chai.request(app)
+    .get('/search/searchitems?search=(football AND soccer) NOT cricket') 
+    .end((err, res) => {
+    res.should.have.status(200);
+    res.body.should.be.a('object');
+    res.body.articles.should.have.lengthOf.below(251);
+    res.body.articles.should.be.not.empty;
+    done();
+    }).timeout(10000);
+})
+
+   it('GET error message when no articles to display for keyword', (done) => {  
+    chai.request(app)
+    .get('/search/searchitems?search=wefwefewefwef') 
+    .end((err, res) => {
+    res.should.have.status(401);
+    res.body.should.be.a('object');
+    done();
+    }).timeout(10000);
+})
+
+})

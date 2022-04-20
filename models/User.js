@@ -64,6 +64,11 @@ entertainment :{
 // technology: String,
 // entertainment: String,
 
+search: {
+    type  : String,
+    default: ""
+},
+
 date :{
     type : Date,
     default : Date.now
