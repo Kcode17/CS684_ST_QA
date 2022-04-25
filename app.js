@@ -93,7 +93,7 @@ app.use('/users',require('./routes/users'));
   //app.use("/api/user", authRoutes); //authentication routes (register, login)
   //app.use("/api/products", productRoutes); //CRUD routes
 
-// Request.get("http://newsapi.org/v2/top-headlines?category=general&apiKey=ab753779157548ca9437dd1cf4c6cec6", (error, response, body) => {
+// Request.get("http://newsapi.org/v2/top-headlines?category=general&apiKey=c3119190b3984f2e93622a901920c7be", (error, response, body) => {
 //   if(error){
 //     return console.dir(error);
 //   }
@@ -111,7 +111,7 @@ app.get("/news/:id", async (req, res) => {
             console.log("User exists");
       console.log(userId)
       const response = await axios({
-      url: "http://newsapi.org/v2/top-headlines?category=general&apiKey=ab753779157548ca9437dd1cf4c6cec6",
+      url: "http://newsapi.org/v2/top-headlines?category=general&apiKey=c3119190b3984f2e93622a901920c7be",
       method: "get",
         });
       res.status(200).json(response.data)
