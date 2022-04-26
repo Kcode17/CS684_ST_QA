@@ -123,8 +123,9 @@ Markdown file will be created for the manual unit tests.
 - Regression testing will cover the end to end functionality that have been developed so far till the latest sprint under execution.
 - Under every Regression cycle all the test cases in the regression suite shall be executed.
 - Test team to do impact analysis of every functionality across the sprint and within the sprint, between functionality for assuring the appropriate test coverage in the Regression suite.
-- System testing will be done per functionality end to end from sprint 1 to sprint 4.
+- System testing will be done per functionality end to end from sprint 1 to sprint 4 for all the functionality listed in the scope of the Test plan.
 - Regression testing will be done using manual test cases. The MD file will be added under TestingDocs -> Sprint4 folder on Github
+- Automation testing done using Selenium and Pytest as well.
 
 
 ## PASS FAIL CRITERIA
