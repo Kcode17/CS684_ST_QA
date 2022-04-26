@@ -33,18 +33,25 @@
   <a href="/dashboard/health/1" class="w3-bar-item w3-button">Health</a>
 </div>
 
-<form class="form-inline my-2 my-lg-0" action="/search/1" id="keysearch" method="POST">
-  <div style="display: inline;">
+<div class="searchbar-container">
+<form display= "flex" action="/search/1" id="keysearch" method="POST">
+  <div class="searchbar-container-1">
+    <div>
   <input class="form-control mr-sm-2" 
           name="search" 
-          id = "search"
+          id="search_bar"
           type="search" 
           placeholder="Search" 
           style="width: 522px;"
           aria-label="Search"> 
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="Submit">Search</button>
+      <!-- <button type="Submit">Search</button> -->
+    </div>
+    <div class="button-search">
+      <button class="btn btn-outline-danger my-2 my-sm-0" id="search_button" type="Submit">Search</button>
     </div> 
+  </div> 
 </form>
+</div>
 <!-- <input  name="id" value="<%= id %>">  -->
 <div class="news-container ">
   <div class="news ">
