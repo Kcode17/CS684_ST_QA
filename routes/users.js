@@ -74,6 +74,12 @@ router.get('/update_user', (req, res) => {
     if(password.length < 6 ) {
         errors.push({msg : 'password atleast 6 characters'})
     }
+    if(password.includes(" ") == true) {
+        errors.push({msg : 'No spaces are allowed in the username'})
+    }
+    if(name.includes(" ") == true) { //replace
+        errors.push({msg : 'No spaces are allowed in the username'})
+    }
     if(errors.length > 0 ) {
     res.render('register', {
         errors : errors,
@@ -119,6 +125,8 @@ router.get('/update_user', (req, res) => {
        })
     }
     })
+
+    
 //logout
 router.get('/logout',(req,res)=>{
 req.logout();
